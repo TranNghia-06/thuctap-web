@@ -112,11 +112,21 @@
                                         {{ __('Đăng xuất') }}
                                     </button>
                                 </li>
+                                <li>
+                                    <a href="{{ route('client.exhibition.ticket.history') }}"
+                                        class="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        type="button">
+                                        {{ __('Lịch sử đặt vé') }}
+                                    </a>
+                                </li>
 
-                                
-
-                                
-
+                                <li>
+                                    <a href="{{ route('order.history') }}"
+                                        class="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                        type="button">
+                                        {{ __('Lịch sử đặt hàng') }}
+                                    </a>
+                                </li>
                                 @if (Auth::user()->is_admin)
                                     <li>
                                         <a href="{{ route('admin.post') }}" role="menuitem"
@@ -136,7 +146,7 @@
         @yield('content')
 
         <!-- Footer -->
-        <footer class="flex justify-between mt-12 bg-gray-100 text-gray-800 py-10 px-10">
+        <footer class=" w-full flex justify-between mt-12 bg-gray-100 text-gray-800 py-10 px-10">
     <div>
         <!-- Tiêu đề Theo dõi -->
         <div class="text-yellow-500 text-2xl font-semibold text-center mb-4 border-b-2 border-black pb-2">THEO DÕI CHÚNG TÔI</div>

@@ -129,7 +129,14 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
    // Quản lý bộ sưu tập
   Route::prefix('collection')->group(function () {
     Route::get('/', [CollectionController::class, 'index'])->name('admin.collection');
+    Route::get('/create', [CollectionController::class, 'showCreate'])->name('admin.collection.create');
+    Route::post('/create', [CollectionController::class, 'create'])->name('admin.collection.create');
 
+    Route::get('/edit/{id}', [CollectionController::class, 'showEdit'])->name('admin.collection.edit');
+    Route::post('/edit/{id}', [CollectionController::class, 'update'])->name('admin.collection.edit');
+
+    Route::get('/delete/{id}', [CollectionController::class, 'showDelete'])->name('admin.collection.delete');
+    Route::post('/delete/{id}', [CollectionController::class, 'delete'])->name('admin.collection.delete');
   });
 });
 
