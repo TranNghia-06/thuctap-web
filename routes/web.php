@@ -95,7 +95,17 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
    // Quản lý người dùng
   Route::prefix('user')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('admin.user');
-   
+    Route::get('/create', [UserController::class, 'create'])->name('admin.user.create');
+    Route::post('/create', [UserController::class, 'createUser'])->name('admin.user.create');
+
+    Route::get('/edit/{id}', [UserController::class, 'edit'])->name('admin.user.edit');
+    Route::post('/edit/{id}', [UserController::class, 'editUser'])->name('admin.user.edit');
+
+    Route::get('/ban/{id}', [UserController::class, 'ban'])->name('admin.user.ban');
+    Route::post('/ban/{id}', [UserController::class, 'banUser'])->name('admin.user.ban');
+
+    Route::get('/unlock/{id}', [UserController::class, 'unBan'])->name('admin.user.unBan');
+    Route::post('/unlock/{id}', [UserController::class, 'unBanUser'])->name('admin.user.unBan');
   });
 
 
