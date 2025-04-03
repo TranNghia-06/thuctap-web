@@ -74,16 +74,35 @@
             </div>
 
             <a href="{{ route('client.exhibition') }}" class="w-[115px] h-[115px] rounded-full border-[0.77px] border-solid border-white bg-transparent flex items-center justify-center transition-all duration-300 ease-in-out hover:bg-[#808080] hover:scale-105 -translate-x-4">
-    <span class="font-bellefair font-normal text-white text-[22.1px] tracking-[0] leading-[normal] whitespace-nowrap">
-        Xem thêm
-    </span>
-</a>
-
+                <span class="font-bellefair font-normal text-white text-[22.1px] tracking-[0] leading-[normal] whitespace-nowrap">
+                    Xem thêm
+                </span>
+            </a>
         </div>
-
-        <div class="w-full relative p-0 flex items-end mt-12 h-[636px] bg-cover bg-[10%_90%] border-none rounded-none" 
+        <div id="slider" class="w-full relative p-0 flex items-end mt-12 h-[636px] bg-cover bg-[10%_90%] border-none rounded-none" 
      style="background-image: url('{{ asset('storage/images/tour.jpg') }}');">
 
+     <script>
+    const images = [
+        "{{ asset('storage/images/tour.jpg') }}",
+        "{{ asset('storage/images/thuvien.jpg') }}",
+        "{{ asset('storage/images/sukien.jpg') }}"
+    ];
+
+    let index = 0;
+    const slider = document.getElementById("slider");
+
+    setInterval(() => {
+        index = (index + 1) % images.length;
+        slider.style.transition = "opacity 1s ease-in-out";
+        slider.style.opacity = 0;
+
+        setTimeout(() => {
+            slider.style.backgroundImage = `url(${images[index]})`;
+            slider.style.opacity = 1;
+        }, 1000);
+    }, 4000);
+</script>
 
             <div class="flex justify-between pb-12 px-8 w-full z-10">
                 <div class="flex items-center gap-10">
@@ -112,18 +131,6 @@
                         </p>
                     </div>
                 </div>
-
-                <!-- <div class="flex items-end justify-end">
-                    <div class="relative cursor-pointer">
-                        <button
-                            class="absolute top-1/2 -left-5 transform -translate-y-1/2 z-1 w-[46px] h-[46px] bg-[#343434] rounded-[23.06px]"></button>
-
-                        <span
-                            class="font-poppins font-normal text-white text-[19.7px] tracking-[0] leading-[normal] z-10 relative">
-                            Book Ticket
-                        </span>
-                    </div>
-                </div> -->
             </div>
 
             <div
@@ -162,35 +169,8 @@
                 alt="Decorative line" src="https://c.animaapp.com/m8peu9m38cRc1i/img/vector-40.svg">
         </div>
 
-        <div class="mt-12 flex gap-4 justify-end">
-
-            <div class="p-0 relative">
-                <div class="bg-gradient-to-b from-transparent to-[rgba(0,0,0,0.50)] absolute top-0 left-0 w-full h-full">
-                </div>
-
-                <img src="https://c.animaapp.com/m8peu9m38cRc1i/img/image-15.png " alt=""
-                    class="w-[521px] h-full object-cover">
-
-                <div class="absolute bottom-0 p-10">
-                    <div
-                        class="font-bellefair font-normal text-white text-[76.4px] tracking-[0] leading-[normal] whitespace-nowrap">
-                        PRODUCT
-                    </div>
-
-                    <div class="font-roboto font-light text-white text-[26.1px] tracking-[6.53px] leading-[normal]">
-                        Lorem ipsum dolor sit amet, consectetur
-                    </div>
-
-                </div>
-            </div>
-
-
-            <div>
-                <img class="w-[580px] object-cover" alt="Product image"
-                    src="https://c.animaapp.com/m8peu9m38cRc1i/img/image-15.png">
-            </div>
-        </div>
-
+    
+        
         <div class="text-center mt-20">
         <a href="{{ route('client.collection') }}">
             <button class="relative w-[290px] h-[95px] p-0 cursor-pointer transform hover:scale-105 transition duration-300 ease-in-out">

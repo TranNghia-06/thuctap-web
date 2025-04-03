@@ -79,7 +79,19 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
   // Quản lý bài viết
   Route::prefix('post')->group(function () {
     Route::get('/', [PostController::class, 'index'])->name('admin.post');
+    Route::get('/trash', [PostController::class, 'showTrash'])->name('admin.post.trash');
 
+    Route::get('/create', [PostController::class, 'showCreate'])->name('admin.post.create');
+    Route::post('/create', [PostController::class, 'store'])->name('admin.post.create');
+
+    Route::get('/edit/{id}', [PostController::class, 'showEdit'])->name('admin.post.edit');
+    Route::post('/edit/{id}', [PostController::class, 'update'])->name('admin.post.edit');
+
+    Route::get('/delete/{id}', [PostController::class, 'showDelete'])->name('admin.post.delete');
+    Route::post('/delete/{id}', [PostController::class, 'delete'])->name('admin.post.delete');
+
+    Route::get('/restore/{id}', [PostController::class, 'showRestore'])->name('admin.post.restore');
+    Route::post('/restore/{id}', [PostController::class, 'restore'])->name('admin.post.restore');
   });
 
 

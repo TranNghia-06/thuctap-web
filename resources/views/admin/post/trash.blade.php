@@ -1,7 +1,7 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    {{ __('Quản lý bài viết') }}
+    {{ __('Quản lý bài viết đã xoá') }}
 @endsection
 
 @php
@@ -9,22 +9,26 @@
 @endphp
 
 @section('content')
-    <x-ui.breadcrumb :breadcrumbs="[['url' => 'admin.post', 'label' => 'Quản lý bài viết']]" />
+    <x-ui.breadcrumb :breadcrumbs="[
+        ['url' => 'admin.post', 'label' => 'Quản lý bài viết'],
+        ['url' => 'admin.post.trash', 'label' => 'Quản lý bài viết đã xoá'],
+    ]" />
 
     <!-- Start coding here -->
     <x-common.section-action title="Quản lý bài viết" description="Danh sách bài viết trong hệ thống">
         <div class="flex flex-col md:flex-row md:space-x-4">
-            <x-ui.button :href="route('admin.post.trash')" class="bg-red-500 hover:bg-red-600">
+            <x-ui.button :href="route('admin.post')" class="bg-red-500 hover:bg-red-600">
                 <x-slot:icon>
-                    <svg class="h-3.5 w-3.5 mr-2 -ml-1 aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
-                        height="24" fill="currentColor" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd"
-                            d="M8.586 2.586A2 2 0 0 1 10 2h4a2 2 0 0 1 2 2v2h3a1 1 0 1 1 0 2v12a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V8a1 1 0 0 1 0-2h3V4a2 2 0 0 1 .586-1.414ZM10 6h4V4h-4v2Zm1 4a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Zm4 0a1 1 0 1 0-2 0v8a1 1 0 1 0 2 0v-8Z"
-                            clip-rule="evenodd" />
+                    <svg class="h-3.5 w-3.5 mr-2 -ml-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24"
+                        height="24" fill="none" viewBox="0 0 24 24">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M5 12h14M5 12l4-4m-4 4 4 4" />
                     </svg>
+
+
                 </x-slot>
 
-                <span>Đã xoá</span>
+                <span>Quay lại</span>
             </x-ui.button>
 
             <x-ui.button :href="route('admin.post.create')">
@@ -75,14 +79,9 @@
                     </td>
 
                     <td class="px-6 py-4 text-nowrap">
-                        <a href={{ route('admin.post.edit', $item->id) }}
+                        <a href={{ route('admin.post.restore', $item->id) }}
                             class="font-medium text-blue-600 dark:text-blue-500 hover:underline {{ $item->role == 'admin' ? 'hidden' : '' }}">
-                            {{ __('Chỉnh sửa') }}
-                        </a>
-
-                        <a href={{ route('admin.post.delete', $item->id) }}
-                            class="font-medium text-red-600 dark:text-red-500 hover:underline ml-4 {{ $item->role == 'admin' ? 'hidden' : '' }}">
-                            {{ __('Xoá') }}
+                            {{ __('Khôi phục') }}
                         </a>
                     </td>
                 </x-ui.table-row>

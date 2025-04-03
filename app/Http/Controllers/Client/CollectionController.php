@@ -9,12 +9,21 @@ use Illuminate\Http\Request;
 class CollectionController extends Controller
 {
     public function index(Request $request)
-    {
-        $limit = $request->input('limit', 10);
-        $data = Collection::paginate($limit)->appends($request->query())->where('is_public', true);
+{
+    $limit = $request->input('limit', 10);
+    $query = Collection::where('is_public', true);
 
-        return view('client.collection.view', compact('data'));
+    // Thêm điều kiện tìm kiếm nếu có từ khóa
+    if ($request->has('q')) {
+        $search = $request->input('q');
+        $query->where('name', 'like', "%{$search}%");
     }
+
+    $data = $query->paginate($limit)->appends($request->query());
+
+    return view('client.collection.view', compact('data'));
+}
+
 
     public function details($id)
     {
