@@ -12,11 +12,11 @@
     <div class="px-2">
         <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[['url' => 'client.exhibition', 'label' => 'Bài viết']]" />
 
-        <h1 class="text-2xl text-white capitalize">
+        <h1 class="mt-7 text-4xl text-white text-center capitalize">
             danh sách bài viết
         </h1>
 
-        <form class="mt-6 max-w-md mx-auto" action="{{ route('client.post') }}" method="GET">
+        <form class="mt-20 max-w-md mx-auto" action="{{ route('client.post') }}" method="GET">
             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Tìm</label>
 
             <div class="relative">
@@ -50,7 +50,7 @@
             <div class="p-5">
                 <p class="mb-2 text-sm text-gray-500 dark:text-gray-400">
                     <span class="font-medium">Tác giả:</span> {{ $item->user->name }} | 
-                    <span class="font-medium">Ngày:</span> {{ $item->formatted_created_at }}
+                    <span class="font-medium">Thời gian:</span> {{ $item->formatted_created_at }}
                 </p>
 
                 <!-- Tiêu đề là một liên kết -->

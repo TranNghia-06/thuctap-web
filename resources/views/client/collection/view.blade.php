@@ -12,12 +12,12 @@
     <div class="px-2">
         <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[['url' => 'client.collection', 'label' => 'Bộ sưu tập']]" />
 
-        <h1 class="text-2xl text-white capitalize">
+        <h1 class="mt-7 text-4xl text-white text-center capitalize">
             Danh sách bộ sưu tập
         </h1>
 
         <!-- Thanh tìm kiếm -->
-        <form class="mt-6 max-w-md mx-auto" action="{{ route('client.collection') }}" method="GET">
+        <form class="mt-20 max-w-md mx-auto" action="{{ route('client.collection') }}" method="GET">
             <label for="default-search" class="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Tìm</label>
 
             <div class="relative">

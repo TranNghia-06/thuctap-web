@@ -125,6 +125,18 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
    // Quản lý buổi triển lãm
   Route::prefix('exhibition')->group(function () {
     Route::get('/', [ExhibitionController::class, 'index'])->name('admin.exhibition');
+    Route::get('/create', [ExhibitionController::class, 'showCreate'])->name('admin.exhibition.create');
+    Route::post('/create', [ExhibitionController::class, 'create'])->name('admin.exhibition.create');
+
+    Route::get('/edit/{id}', [ExhibitionController::class, 'showEdit'])->name('admin.exhibition.edit');
+    Route::post('/edit/{id}', [ExhibitionController::class, 'update'])->name('admin.exhibition.edit');
+
+    Route::get('/delete/{id}', [ExhibitionController::class, 'showDelete'])->name('admin.exhibition.delete');
+    Route::post('/delete/{id}', [ExhibitionController::class, 'delete'])->name('admin.exhibition.delete');
+
+    Route::get('/trash', [ExhibitionController::class, 'showTrash'])->name('admin.exhibition.trash');
+
+    Route::post('/restore/{id}', [ExhibitionController::class, 'restore'])->name('admin.exhibition.restore');
 
   });
 

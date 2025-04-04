@@ -101,7 +101,7 @@
             slider.style.backgroundImage = `url(${images[index]})`;
             slider.style.opacity = 1;
         }, 1000);
-    }, 4000);
+    }, 3000);
 </script>
 
             <div class="flex justify-between pb-12 px-8 w-full z-10">
@@ -143,14 +143,14 @@
     <div class="py-20 mt-12 bg-neutral-900">
         <div class="flex items-center justify-center">
             <div class="flex items-center justify-center">
-                <img class="h-auto w-full object-cover translate-x-12 z-2" alt="Carousel image 1"
-                    src="https://c.animaapp.com/m8peu9m38cRc1i/img/image-11.svg">
+                <img class="h-[370px] w-full object-cover translate-x-12 z-2" alt="Carousel image 1"
+                    src="{{ asset('storage/images/anhnen4.png') }}">
 
-                <img class="h-auto w-full object-cover z-10" alt="Carousel image 3"
-                    src="https://c.animaapp.com/m8peu9m38cRc1i/img/image-13.svg">
+                <img class="h-[500px]  object-cover z-10" alt="Carousel image 3"
+                    src="{{ asset('storage/images/anhnen3.png') }}">
 
-                <img class="h-auto w-full object-cover transform -translate-x-10 z-2" alt="Carousel image 2"
-                    src="https://c.animaapp.com/m8peu9m38cRc1i/img/image-12.svg">
+                <img class="h-[370px] w-full object-cover transform -translate-x-10 z-2" alt="Carousel image 2"
+                    src="{{ asset('storage/images/anhnen4.png') }}">
             </div>
         </div>
     </div>
@@ -169,8 +169,35 @@
                 alt="Decorative line" src="https://c.animaapp.com/m8peu9m38cRc1i/img/vector-40.svg">
         </div>
 
-    
-        
+        <div class="mt-12 flex gap-4 justify-end">
+
+            <div class="p-0 relative">
+                <div class="bg-gradient-to-b from-transparent to-[rgba(0,0,0,0.50)] absolute top-0 left-0 w-full h-full">
+                </div>
+
+                <img src="https://c.animaapp.com/m8peu9m38cRc1i/img/image-15.png " alt=""
+                    class="w-[521px] h-full object-cover">
+
+                <div class="absolute bottom-0 p-10">
+                    <div
+                        class="font-bellefair font-normal text-white text-[76.4px] tracking-[0] leading-[normal] whitespace-nowrap">
+                        PRODUCT
+                    </div>
+
+                    <div class="font-roboto font-light text-white text-[26.1px] tracking-[6.53px] leading-[normal]">
+                        Lorem ipsum dolor sit amet, consectetur
+                    </div>
+
+                </div>
+            </div>
+
+
+            <div>
+                <img class="w-[580px] object-cover" alt="Product image"
+                    src="https://c.animaapp.com/m8peu9m38cRc1i/img/image-15.png">
+            </div>
+        </div>
+
         <div class="text-center mt-20">
         <a href="{{ route('client.collection') }}">
             <button class="relative w-[290px] h-[95px] p-0 cursor-pointer transform hover:scale-105 transition duration-300 ease-in-out">
@@ -183,5 +210,3 @@
         </div>
     </section>
 @endsection
-
-

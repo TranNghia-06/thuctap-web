@@ -10,7 +10,7 @@ class PostController extends Controller
 {
     public function index(Request $request)
     {
-        $limit = $request->input('limit', 10);
+        $limit = $request->input('limit', 50);
         $searchingName = $request->input('q') ?? '';
         $data = Post::paginate($limit)->appends($request->query());
 

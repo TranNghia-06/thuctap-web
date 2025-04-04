@@ -28,20 +28,23 @@
         <!-- Ảnh tiêu đề lớn -->
         <div class="flex flex-col md:flex-row items-start gap-6 mb-6">
     <!-- Ảnh bên trái -->
-    
-    <div class="mt-4 relative max-w-[600px] w-full md:w-1/2">
+    <!-- Ảnh và mô tả đều căn trong một hàng -->
+<div class="flex flex-col md:flex-row gap-6 mb-6">
+    <!-- Ảnh bên trái -->
+    <div class=" mt-6 w-full md:w-1/2">
         <img src="{{ asset('storage/' . $data->thumbnail ?? '') }}" 
             alt="{{ $data->title }}" 
             class="w-full h-auto max-h-[800px] object-cover rounded-lg shadow-lg">
-        
     </div>
 
     <!-- Mô tả bên phải -->
-    <div class="w-full md:w-1/2 text-gray-300">
-        <div class="mt-4 text-gray-400 text-[18px]">
+    <div class="mt-6 w-full md:w-1/2 text-gray-300">
+        <div class="mt-4 text-gray-400 text-[18px] text-justify">
             {!! $data->content_html !!}
         </div>
     </div>
+</div>
+
 </div>
         <!-- Nút quay lại -->
         <div class="mt-8">
