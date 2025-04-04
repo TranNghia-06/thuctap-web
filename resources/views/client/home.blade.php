@@ -169,34 +169,67 @@
                 alt="Decorative line" src="https://c.animaapp.com/m8peu9m38cRc1i/img/vector-40.svg">
         </div>
 
-        <div class="mt-12 flex gap-4 justify-end">
-
-            <div class="p-0 relative">
-                <div class="bg-gradient-to-b from-transparent to-[rgba(0,0,0,0.50)] absolute top-0 left-0 w-full h-full">
-                </div>
-
-                <img src="https://c.animaapp.com/m8peu9m38cRc1i/img/image-15.png " alt=""
-                    class="w-[521px] h-full object-cover">
-
-                <div class="absolute bottom-0 p-10">
-                    <div
-                        class="font-bellefair font-normal text-white text-[76.4px] tracking-[0] leading-[normal] whitespace-nowrap">
-                        PRODUCT
-                    </div>
-
-                    <div class="font-roboto font-light text-white text-[26.1px] tracking-[6.53px] leading-[normal]">
-                        Lorem ipsum dolor sit amet, consectetur
-                    </div>
-
-                </div>
-            </div>
 
 
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-16 px-4 md:px-16">
+    {{-- Left Block – Hình ảnh lớn với overlay chữ --}}
+    <div class="relative group overflow-hidden rounded-2xl shadow-xl">
+        <img src="{{ asset('storage/images/kiengkimlien.jpg') }}"
+            alt="Collection"
+            class="w-full h-[500px] object-cover transform group-hover:scale-105 transition duration-500 ease-in-out">
+
+        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent"></div>
+
+        <div class="absolute bottom-8 left-8 text-white z-10">
+    <h2 class="text-5xl font-serif font-semibold tracking-wide">
+        Bộ sưu tập nổi bật
+    </h2>
+    <p class="text-lg mt-2 text-gray-300 w-[80%]">Nơi lưu giữ vẻ đẹp cổ truyền dân tộc Việt Nam qua từng món trang sức.</p>
+    <a href="{{ route('client.collection') }}"
+        class="mt-4 inline-block px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-100 transition">
+        Khám phá ngay
+    </a>
+</div>
+
+
+    </div>
+
+    {{-- Right Block – Ảnh phụ + nội dung giới thiệu --}}
+    <div class="flex flex-col justify-between gap-6">
+        
+
+        <div class="flex gap-4 items-start">
+            <img src="{{ asset('storage/images/vongtay.jpg') }}"
+                alt="Item 3"
+                class="w-32 h-32 object-cover rounded-lg shadow-md">
             <div>
-                <img class="w-[580px] object-cover" alt="Product image"
-                    src="https://c.animaapp.com/m8peu9m38cRc1i/img/image-15.png">
+                <h3 class="text-xl font-bold text-white">Vòng Ngọc Bích Hoàng Gia</h3>
+                <p class="text-gray-400 mt-1 text-sm">Biểu tượng của sự may mắn và trường thọ trong văn hóa phương Đông.</p>
             </div>
         </div>
+
+        <div class="flex gap-4 items-start">
+            <img src="{{ asset('storage/images/lacchan.jpg') }}"
+                alt="Item 2"
+                class="w-32 h-32 object-cover rounded-lg shadow-md">
+            <div>
+                <h3 class="text-xl font-bold text-white">Lắc Chân Bạc Trống Đồng</h3>
+                <p class="text-gray-400 mt-1 text-sm">Hoa văn trống đồng tượng trưng cho sự thịnh vượng, hưng thịnh và vững vàng trong cuộc sống.</p>
+            </div>
+        </div>
+
+        <div class="flex gap-4 items-start">
+            <img src="{{ asset('storage/images/tramcailada.jpg') }}"
+                alt="Item 1"
+                class="w-32 h-32 object-cover rounded-lg shadow-md">
+            <div>
+                <h3 class="text-xl font-bold text-white">Trâm Cài Lá Đa</h3>
+                <p class="text-gray-400 mt-1 text-sm">Món trang sức truyền thống của Việt Nam, thường được chế tác từ vàng, bạc hoặc đồng, mang hình dáng chiếc lá đa mềm mại.</p>
+            </div>
+        </div>
+    </div>
+</div>
+
 
         <div class="text-center mt-20">
         <a href="{{ route('client.collection') }}">
@@ -210,3 +243,28 @@
         </div>
     </section>
 @endsection
+
+
+
+<style>
+    /* Tạo hiệu ứng chạy chữ từ trái qua phải collections*/
+/* Tạo hiệu ứng chạy chữ liên tục */
+@keyframes marquee {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+/* Áp dụng animation cho phần chữ */
+.text-5xl {
+    display: inline-block;
+    white-space: nowrap; /* Đảm bảo chữ không bị xuống dòng */
+    animation: marquee 10s linear infinite;
+}
+
+
+
+</style>

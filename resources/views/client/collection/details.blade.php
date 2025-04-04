@@ -4,71 +4,64 @@
     {{ __('Chi tiết bộ sưu tập') }}
 @endsection
 
-@php
-    $searching = request()->get('q') ?? '';
-@endphp
-
 @section('content')
-    <div class="px-2">
-        <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[
+    <div class="bg-black text-white px-6 py-8 min-h-screen">
+        {{-- Breadcrumb --}}
+        <x-ui.breadcrumb :is-admin="0" :breadcrumbs="[
             ['url' => 'client.collection', 'label' => 'Bộ sưu tập'],
             ['url' => 'client.collection.details', 'param' => $data->id, 'label' => 'Chi tiết bộ sưu tập'],
         ]" />
 
-        <h1 class="text-2xl capitalize mt-2">
-            {{ $data->title }}
-        </h1>
-
-        <div class="mb-3 mt-5">
-            <h2 class="mb-1 font-bold tracking-tight text-gray-100">Ảnh tiêu đề:</h2>
-            <img src="{{ asset('storage/' . $data->thumbnail) }}" alt="{{ $data->title }}" class="size-52 rounded-md">
+        {{-- Tiêu đề --}}
+        <div class="text-center mb-8">
+            <h1 class="text-4xl font-bold tracking-wide">{{ $data->title }}</h1>
+            <p class="text-gray-400 mt-2 italic">{{ $data->formatted_type }}</p>
         </div>
 
-        <div class="mb-3 mt-5">
-            <h2 class="mb-1 font-bold tracking-tight text-gray-100">Mô tả:</h2>
-            <p class="mb-3 font-normal text-gray-400 test-sm">{{ $data->description }}</p>
+        {{-- Ảnh chính --}}
+        <div class="flex justify-center mb-10">
+            <img src="{{ asset('storage/' . $data->thumbnail) }}"
+                alt="{{ $data->title }}"
+                class="rounded-2xl shadow-2xl max-w-3xl w-full object-cover">
         </div>
 
-        <div class="mb-3 mt-5">
-            <h2 class="mb-1 font-bold tracking-tight text-gray-100">Thuộc loại bộ sưu tập:</h2>
-            <p class="mb-3 font-normal text-gray-400 test-sm">{{ $data->formatted_type }}</p>
-        </div>
-
-        @if ($data->is_sale)
-            <div class="mb-3 mt-5">
-                <h2 class="mb-1 font-bold tracking-tight text-gray-100 underline">Giá bán:</h2>
-                <p class="mb-3 font-normal text-gray-400 test-sm">{{ $data->formatted_price . ' VND' }}</p>
+        {{-- Mô tả và Giá (nếu có) --}}
+        <div class="max-w-4xl mx-auto text-lg space-y-6 mb-12">
+            <div>
+                <h2 class="text-2xl font-semibold mb-2">📝 Mô tả</h2>
+                <p class="text-gray-300 leading-relaxed">{{ $data->description }}</p>
             </div>
-        @endif
 
-        @if ($data->is_sale)
-            <div class="mb-3 mt-3">
-                <a href="{{ route('cart.add', $data->id) }}"
-                    class="inline-flex mt-3 items-center px-3 py-2 text-sm font-medium text-center text-white bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                    Thêm giỏ hàng
-                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd"
-                            d="M6 5V4a1 1 0 1 1 2 0v1h3V4a1 1 0 1 1 2 0v1h3V4a1 1 0 1 1 2 0v1h1a2 2 0 0 1 2 2v2H3V7a2 2 0 0 1 2-2h1ZM3 19v-8h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm5-6a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H8Z"
-                            clip-rule="evenodd" />
-                    </svg>
+            @if ($data->is_sale)
+                <div>
+                    <h2 class="text-2xl font-semibold mb-2">💰 Giá bán</h2>
+                    <p class="text-green-400 text-2xl font-bold">{{ $data->formatted_price }} VND</p>
 
-                </a>
-            </div>
-        @endif
+                    <a href="{{ route('cart.add', $data->id) }}"
+                        class="inline-flex mt-4 items-center px-6 py-3 bg-green-600 hover:bg-green-700 text-white rounded-full transition-all duration-300 shadow-lg">
+                        <span>Thêm vào giỏ hàng</span>
+                        <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path fill-rule="evenodd"
+                                d="M6 5V4a1 1 0 1 1 2 0v1h3V4a1 1 0 1 1 2 0v1h3V4a1 1 0 1 1 2 0v1h1a2 2 0 0 1 2 2v2H3V7a2 2 0 0 1 2-2h1ZM3 19v-8h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm5-6a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H8Z"
+                                clip-rule="evenodd" />
+                        </svg>
+                    </a>
+                </div>
+            @endif
+        </div>
 
-        <div class="mb-3 mt-5">
-            <h2 class="mb-1 font-bold tracking-tight text-gray-100 underline">Danh sách ảnh:</h2>
-
-
-
-            <div class="grid grid-cols-2 gap-2">
-                @foreach ($data->images_json as $key => $image)
-                    <div>
-                        <img class="h-auto max-w-full rounded-lg" src="{{ asset('storage/' . $image) }}" alt="">
+        {{-- Gallery ảnh phụ --}}
+        <!-- <div class="max-w-6xl mx-auto">
+            <h2 class="text-2xl font-semibold mb-4">🖼 Bộ ảnh chi tiết</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                @foreach ($data->images_json as $image)
+                    <div class="overflow-hidden rounded-xl shadow-xl hover:scale-105 transition-transform duration-300">
+                        <img src="{{ asset('storage/' . $image) }}"
+                            alt="Ảnh bộ sưu tập"
+                            class="w-full h-60 object-cover">
                     </div>
                 @endforeach
             </div>
-        </div>
+        </div> -->
     </div>
 @endsection

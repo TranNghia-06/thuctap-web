@@ -5,17 +5,14 @@
 @endsection
 
 @section('content')
-    <div class="text-white px-2">
-        <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[
+    <div class="bg-white text-gray-900 px-4 py-6 min-h-screen">
+        <x-ui.breadcrumb :is-admin="0" :breadcrumbs="[
             ['url' => 'client.exhibition', 'label' => 'Buổi triển lãm'],
             ['url' => 'client.exhibition.details', 'param' => $data->id, 'label' => $data->title],
             ['url' => 'client.exhibition.booking', 'param' => $data->id, 'label' => 'Đặt vé cho buổi triển lãm'],
         ]" />
 
-
-        <h1 class="text-2xl capitalize mt-2">
-            {{ $data->title }}
-        </h1>
+        <h1 class="text-3xl font-bold mt-6 mb-4">{{ $data->title }}</h1>
 
         @if (session('error'))
             <x-ui.alert type="danger">
@@ -23,53 +20,72 @@
             </x-ui.alert>
         @endif
 
-        <div class="mb-3 mt-5">
-            <h2 class="mb-1 font-bold tracking-tight text-gray-100">Mô tả:</h2>
-            <p class="mb-3 font-normal text-gray-400 test-sm">{{ $data->description }}</p>
-        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-6">
+            {{-- Thông tin triển lãm --}}
+            <div class="bg-gray-50 border border-gray-200 rounded-xl p-6 shadow-sm space-y-4">
+                <h2 class="text-xl font-semibold">📝 Mô tả</h2>
+                <p class="text-gray-700">{{ $data->description }}</p>
 
-        <div class="mb-3 mt-5">
-            <h2 class="mb-1 font-bold tracking-tight text-gray-100 underline">Bắt đầu:</h2>
-            <p class="mb-3 font-normal text-gray-400 test-sm">{{ $data->formatted_start_date }}</p>
-        </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <div>
+                        <h3 class="font-semibold">📅 Bắt đầu</h3>
+                        <p>{{ $data->formatted_start_date }}</p>
+                    </div>
+                    <div>
+                        <h3 class="font-semibold">📆 Kết thúc</h3>
+                        <p>{{ $data->formatted_end_date }}</p>
+                    </div>
+                </div>
 
-        <div class="mb-3 mt-5">
-            <h2 class="mb-1 font-bold tracking-tight text-gray-100 underline">Kết thúc:</h2>
-            <p class="mb-3 font-normal text-gray-400 test-sm">{{ $data->formatted_end_date }}</p>
-        </div>
+                <div>
+                    <h3 class="font-semibold">🎟️ Vé có sẵn</h3>
+                    <x-ui.badge type="green" :text="$data->is_limited_tickets ? $data->available_tickets : 'Không giới hạn'" />
+                </div>
 
-        <div class="mb-3 mt-5">
-            <h2 class="mb-1 font-bold tracking-tight text-gray-100">Số lượng vé có sẵn:</h2>
-            <p class="mb-3 font-normal text-gray-400 test-sm">
-                <x-ui.badge type="green" :text="$data->is_limited_tickets ? $data->available_tickets : 'Không giới hạn'" />
-            </p>
-        </div>
-
-        <form class="space-y-4 md:space-y-6 mt-8" action="{{ route('client.exhibition.booking', $data->id) }}"
-            method="POST">
-            @csrf
-            <div class="mb-3 mt-5">
-                <x-form.input-field :light="false" name="ticket_count" label="Số lượng đặt vé" type="number"
-                    :value="old('ticket_count') ?? 1" required placeholder="VD: Nhập số lượng vé" min="1" />
+                @if ($data->is_expired)
+                    <p class="text-red-500 font-medium mt-3">⛔ Buổi triển lãm đã kết thúc</p>
+                @endif
             </div>
 
-            <div class="mb-3 mt-5">
-                <x-form.textarea-field :light="false" name="details" label="Ghi chú" :value="old('details')"
-                    placeholder="VD: Ghi chú" />
-            </div>
+            {{-- Form đặt vé --}}
+            @if (!$data->is_expired)
+                <div class="bg-white border border-gray-200 rounded-xl p-6 shadow space-y-5">
+                    <h2 class="text-xl font-semibold mb-4">📩 Thông tin đặt vé</h2>
 
-            <div class="mb-3 mt-5">
-                <button type="submit"
-                    class="inline-flex mt-3 items-center px-3 py-2 text-sm font-medium text-center text-white bg-primary-700 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
-                    Đặt vé
-                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                        width="24" height="24" fill="currentColor" viewBox="0 0 24 24">
-                        <path fill-rule="evenodd"
-                            d="M6 5V4a1 1 0 1 1 2 0v1h3V4a1 1 0 1 1 2 0v1h3V4a1 1 0 1 1 2 0v1h1a2 2 0 0 1 2 2v2H3V7a2 2 0 0 1 2-2h1ZM3 19v-8h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm5-6a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H8Z"
-                            clip-rule="evenodd" />
-                    </svg>
-                </button>
-            </div>
-        </form>
+                    <form action="{{ route('client.exhibition.booking', $data->id) }}" method="POST" class="space-y-5">
+                        @csrf
+
+                        <x-form.input-field
+                            :light="true"
+                            name="ticket_count"
+                            label="Số lượng vé"
+                            type="number"
+                            :value="old('ticket_count') ?? 1"
+                            required
+                            placeholder="VD: 2 vé"
+                            min="1"
+                        />
+
+                        <x-form.textarea-field
+                            :light="true"
+                            name="details"
+                            label="Ghi chú"
+                            :value="old('details')"
+                            placeholder="VD: Tôi muốn chọn chỗ gần cổng vào..."
+                        />
+
+                        <button type="submit"
+                            class="w-full flex justify-center items-center px-4 py-2 text-white bg-green-600 hover:bg-green-700 rounded-lg font-medium transition">
+                            Đặt vé
+                            <svg class="ml-2 w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                                <path fill-rule="evenodd"
+                                    d="M6 5V4a1 1 0 1 1 2 0v1h3V4a1 1 0 1 1 2 0v1h3V4a1 1 0 1 1 2 0v1h1a2 2 0 0 1 2 2v2H3V7a2 2 0 0 1 2-2h1ZM3 19v-8h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm5-6a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H8Z"
+                                    clip-rule="evenodd" />
+                            </svg>
+                        </button>
+                    </form>
+                </div>
+            @endif
+        </div>
     </div>
 @endsection
