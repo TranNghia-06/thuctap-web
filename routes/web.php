@@ -99,7 +99,14 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
   // Quản lý đơn hàng
   Route::prefix('order')->group(function () {
     Route::get('/', [OrderController::class, 'index'])->name('admin.order');
+    Route::get('/create', [OrderController::class, 'showCreate'])->name('admin.order.create');
+    Route::post('/create', [OrderController::class, 'create'])->name('admin.order.create');
 
+    Route::get('/edit/{id}', [OrderController::class, 'showEdit'])->name('admin.order.edit');
+    Route::post('/edit/{id}', [OrderController::class, 'edit'])->name('admin.order.edit');
+
+    Route::get('/delete/{id}', [OrderController::class, 'showDelete'])->name('admin.order.delete');
+    Route::post('/delete/{id}', [OrderController::class, 'delete'])->name('admin.order.delete');
   });
 
 
@@ -145,7 +152,14 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
    // Quản lý vé
   Route::prefix('ticket')->group(function () {
     Route::get('/', [BookingTicketController::class, 'index'])->name('admin.ticket');
+    Route::get('/create', [BookingTicketController::class, 'showCreate'])->name('admin.ticket.create');
+    Route::post('/create', [BookingTicketController::class, 'create'])->name('admin.ticket.create');
 
+    Route::get('/edit/{id}', [BookingTicketController::class, 'showEdit'])->name('admin.ticket.edit');
+    Route::post('/edit/{id}', [BookingTicketController::class, 'update'])->name('admin.ticket.edit');
+
+    Route::get('/delete/{id}', [BookingTicketController::class, 'showDelete'])->name('admin.ticket.delete');
+    Route::post('/delete/{id}', [BookingTicketController::class, 'delete'])->name('admin.ticket.delete');
   });
 
 

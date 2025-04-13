@@ -35,12 +35,12 @@
                         </svg>
                     </button>
 
-                    <a href="{{ route('admin.post') }}" class="">
-                        <div class="inline-flex flex-col items-center justify-center p-2.5">
-                            <img class="w-full h-6" alt="Museum logo"
-                                src="{{ asset('storage/images/logo.png') }}">
-                        </div>
-                    </a>
+                    <a href="{{ route('admin.post') }}" class="flex items-center space-x-2 p-2.5">
+    <img class="w-8 h-8" alt="Museum logo"
+         src="{{ asset('storage/images/logo.png') }}">
+    <span class="text-lg font-semibold text-gray-800">Jewelry Museum</span>
+</a>
+
                 </div>
 
                 @auth

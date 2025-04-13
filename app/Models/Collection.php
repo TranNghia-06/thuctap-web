@@ -62,20 +62,16 @@ class Collection extends Model
 
     public function getFormattedTypeAttribute()
     {
-        if ($this->type == 'fossils') {
-            return 'Hóa thạch';
-        }
-
-        if ($this->type == 'handicrafts') {
-            return 'Đồ thủ công mỹ nghệ';
-        }
-
         if ($this->type == 'painting') {
             return 'Tranh vẽ';
         }
 
         if ($this->type == 'sculpture') {
             return 'Tác phẩm điêu khắc';
+        }
+
+        if ($this->type == 'jewelry') {
+            return 'Trang sức';
         }
 
         if ($this->type == 'statues') {
