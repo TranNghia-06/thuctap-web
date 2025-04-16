@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
+<script src="//unpkg.com/alpinejs" defer></script>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -11,6 +13,7 @@
     <title>@yield('title') - {{ config('app.name', 'Museum') }}</title>
 
     <!-- Fonts -->
+
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.googleapis.com/css?family=Baskervville:400|Bellefair:400|Poppins:300,400|Roboto:300,500"
         rel="stylesheet">
@@ -27,122 +30,84 @@
 <body class="bg-[#0d0d0d]">
     <div class="w-[1440px] mx-auto overflow-hidden">
         <!-- Navigation -->
-        <nav class="text-center h-24 z-10 relative">
-            <ul class="flex gap-16 justify-center items-center">
-                <li class="font-baskervville font-normal text-white text-20px text-center tracking-[0] leading-[normal]">
-                    <a class="uppercase" href="{{ route('home') }}">{{ __('Trang chủ') }}</a>
-                </li>
+        <nav class="bg-black text-white px-6 py-4">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+        <!-- Logo -->
+        <a href="{{ route('home') }}" class="flex items-center gap-2">
+    <!-- Logo hình -->
+    <img src="{{ asset('storage/images/logo.png') }}" alt="Museum logo" class="w-17 h-auto">
+    <!-- Tên bảo tàng -->
+    <div class="flex flex-col leading-tight">
+        <span class="text-xl font-serif">The Jewelry</span>
+        <span class="text-xl font-serif">Museum</span>
+    </div>
+        </a>
+        <!-- Menu trung tâm -->
+        <ul class="flex gap-8 items-center">
+            <li class="relative group">
+                <a href="{{ route('home') }}" class="hover:underline uppercase">Trang chủ</a>
+            </li>
+            <li class="relative group">
+                <a href="{{ route('client.exhibition') }}" class="hover:underline uppercase">Tham quan</a>
+            </li>
+            <li class="relative group">
+                <a href="{{ route('client.collection') }}" class="hover:underline uppercase">Trưng bày</a>
+            </li>
+            <li class="relative group">
+                <a href="{{ route('client.post') }}" class="hover:underline uppercase">Bài viết</a>
+            </li>
+        </ul>
 
-                <li class="font-baskervville font-normal text-white text-20px text-center tracking-[0] leading-[normal]">
-                    <a class="uppercase" href="{{ route('client.exhibition') }}">{{ __('Buổi triển lãm') }}</a>
-                </li>
+ <!-- Menu bên phải -->
+<div class="flex items-center gap-4">
+    <!-- Giỏ hàng -->
+    <a href="{{ route('cart') }}" class="uppercase hover:underline">Giỏ hàng</a>
 
-                @guest
-                    <li class="font-baskervville font-normal text-white text-20px text-center tracking-[0] leading-[normal]">
-                        <a class="uppercase" href="{{ route('client.collection') }}">{{ __('Bộ sưu tập') }}</a>
+    @guest
+        <!-- Đăng nhập -->
+        <a href="{{ route('login') }}" class="uppercase hover:underline">Đăng nhập</a>
+    @else
+        <!-- Avatar và Dropdown -->
+        <div class="relative" x-data="{ open: false }">
+            <button @click="open = !open" class="focus:outline-none">
+                <img src="{{ Auth::user()->photo ? asset('storage/' . Auth::user()->photo) : asset('storage/images/logo4.jpg') }}"
+                     class="w-8 h-8 rounded-full" alt="User photo">
+            </button>
+            <!-- Dropdown -->
+            <div x-show="open"
+                 @click.away="open = false"
+                 x-transition
+                 class="absolute right-0 mt-2 bg-white text-black rounded shadow-lg z-50 min-w-[200px]">
+                <div class="px-4 py-2 border-b">
+                    <p class="text-sm font-medium">{{ Auth::user()->name }}</p>
+                    <p class="text-sm text-gray-600">{{ Auth::user()->email }}</p>
+                </div>
+                <ul>
+                    <li>
+                        <a href="{{ route('client.exhibition.ticket.history') }}" class="block px-4 py-2 hover:bg-gray-100">
+                            Lịch sử đặt vé
+                        </a>
                     </li>
-                @endguest
-
-                <li>
-                    <a href="{{ route('home') }}"
-                        class="inline-flex flex-col items-center justify-center p-2.5 bg-[#0000001a] backdrop-blur-[5px] backdrop-brightness-[100%] [-webkit-backdrop-filter:blur(5px)_brightness(100%)]">
-                        <img class="w-[52.58px] h-[43.75px]" alt="Museum logo"
-                            src="{{ asset('storage/images/logo.png') }}">
-                        <div
-                            class="font-baskervville font-normal text-white text-xs text-center tracking-[0] leading-[normal]">
-                            jewelry</div>
-                        <div
-                            class="font-baskervville font-normal text-white text-xs text-center tracking-[0] leading-[normal]">
-                            MUSEUM</div>
-                    </a>
-                </li>
-
-                @auth
-                    <li class="font-baskervville font-normal text-white text-20px text-center tracking-[0] leading-[normal]">
-                        <a class="uppercase" href="{{ route('client.collection') }}">{{ __('Bộ sưu tập') }}</a>
+                    @if (Auth::user()->is_admin)
+                        <li>
+                            <a href="{{ route('admin.post') }}" class="block px-4 py-2 hover:bg-gray-100">
+                                Quản trị Admin
+                            </a>
+                        </li>
+                    @endif
+                    <li>
+                        <button data-modal-target="popup-modal-logout" data-modal-toggle="popup-modal-logout"
+                                class="w-full text-left px-4 py-2 hover:bg-gray-100">
+                            Đăng xuất
+                        </button>
                     </li>
-                    <li class="font-baskervville font-normal text-white text-20px text-center tracking-[0] leading-[normal]">
-                        <a class="uppercase" href="{{ route('client.post') }}">{{ __('Bài viết') }}</a>
-                    </li>
-                @endauth
-
-                <li class="font-baskervville font-normal text-white text-20px text-center tracking-[0] leading-[normal]">
-                    <a class="uppercase" href="{{ route('cart') }}">{{ __('Giỏ hàng') }}</a>
-                </li>
-
-                @guest
-                    <li class="font-baskervville font-normal text-white text-20px text-center tracking-[0] leading-[normal]">
-                        <a class="uppercase" href="{{ route('login') }}">{{ __('Đăng nhập') }}</a>
-                    </li>
-
-                    <li class="font-baskervville font-normal text-white text-20px text-center tracking-[0] leading-[normal]">
-                        <a class="uppercase" href="{{ route('register') }}">{{ __('Đăng ký') }}</a>
-                    </li>
-                @else
-                    <li class="flex items-center">
-                        <div>
-                            <button type="button"
-                                class="flex text-sm bg-gray-800 rounded-full focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                                aria-expanded="false" data-dropdown-toggle="dropdown-user"
-                                data-dropdown-placement="bottom-start">
-                                <span class="sr-only">{{ __('Open user menu') }}</span>
-                                <img class="w-8 h-8 rounded-full"
-                                    src="{{ Auth::user()->photo ? asset('storage/' . Auth::user()->photo) : asset('storage/images/logo4.jpg') }}"
-                                    alt="user photo">
-                            </button>
-                        </div>
-
-                        <div class="z-50 hidden my-4 text-base list-none bg-white divide-y divide-gray-100 rounded-sm shadow-sm dark:bg-gray-700 dark:divide-gray-600"
-                            id="dropdown-user">
-                            <div class="px-4 py-3" role="none">
-                                <p class="text-sm text-gray-900 dark:text-white" role="none">
-                                    {{ Auth::user()->name }}
-                                </p>
-                                <p class="text-sm font-medium text-gray-900 truncate dark:text-gray-300" role="none">
-                                    {{ Auth::user()->email }}
-                                </p>
-                            </div>
-
-                            <ul class="py-1 text-left" role="none">
-                                <li>
-                                    <button role="menuitem" data-modal-target="popup-modal-logout"
-                                        data-modal-toggle="popup-modal-logout"
-                                        class="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        type="button">
-                                        {{ __('Đăng xuất') }}
-                                    </button>
-                                </li>
-                                <li>
-                                    <a href="{{ route('client.exhibition.ticket.history') }}"
-                                        class="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        type="button">
-                                        {{ __('Lịch sử đặt vé') }}
-                                    </a>
-                                </li>
-
-                                <li>
-                                    <a href="{{ route('order.history') }}"
-                                        class="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                        type="button">
-                                        {{ __('Lịch sử đặt hàng') }}
-                                    </a>
-                                </li>
-                                @if (Auth::user()->is_admin)
-                                    <li>
-                                        <a href="{{ route('admin.post') }}" role="menuitem"
-                                            class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
-                                            type="button">
-                                            {{ __('Quản trị ADmin') }}
-                                        </a>
-                                    </li>
-                                @endif
-                            </ul>
-                        </div>
-                    </li>
-                @endguest
-            </ul>
-        </nav>
-
+                </ul>
+            </div>
+        </div>
+    @endguest
+</div>
+    </div>
+</nav>
         @yield('content')
 
         <!-- Footer -->

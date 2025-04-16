@@ -66,18 +66,18 @@
                 <hr class="w-[197px] h-1 bg-[#727272]">
 
                 <h2
-                    class="font-Playfair Display font-bold  text-white text-[71.6px] tracking-[0] leading-[normal] whitespace-nowrap my-8">
+                    class="font-Playfair Display font-bold  text-white text-[61.6px] tracking-[0] leading-[normal] whitespace-nowrap my-8">
                     Buổi Triển Lãm
                 </h2>
 
                 <hr class="w-[731px] h-1 bg-[#727272]">
             </div>
-
             <a href="{{ route('client.exhibition') }}" class="w-[115px] h-[115px] rounded-full border-[0.77px] border-solid border-white bg-transparent flex items-center justify-center transition-all duration-300 ease-in-out hover:bg-[#808080] hover:scale-105 -translate-x-4">
                 <span class="font-bellefair font-normal text-white text-[22.1px] tracking-[0] leading-[normal] whitespace-nowrap">
                     Xem thêm
                 </span>
             </a>
+            
         </div>
         <div id="slider" class="w-full relative p-0 flex items-end mt-12 h-[636px] bg-cover bg-[10%_90%] border-none rounded-none" 
      style="background-image: url('{{ asset('storage/images/tour.jpg') }}');">
@@ -138,28 +138,100 @@
             </div>
         </div>
     </section>
-  
-    <!-- Carousel Section -->
-    <div class="py-20 mt-12 bg-neutral-900">
-        <div class="flex items-center justify-center">
-            <div class="flex items-center justify-center">
-                <img class="h-[370px] w-full object-cover translate-x-12 z-2" alt="Carousel image 1"
-                    src="{{ asset('storage/images/anhnen4.png') }}">
+ <!-- Jewelry Museum Hero Section -->
+<div class="bg-black text-white py-16 px-8 md:px-20 border-b border-gray-700">
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
+        <!-- Left: Title -->
+        <div class="max-w-2xl">
+            <h2 class="text-3xl md:text-5xl font-semibold leading-tight">
+                Discover the timeless beauty <br class="hidden md:block" />
+                of Vietnamese heritage jewelry
+            </h2>
+        </div>
 
-                <img class="h-[500px]  object-cover z-10" alt="Carousel image 3"
-                    src="{{ asset('storage/images/anhnen3.png') }}">
+        <!-- Right: Info list -->
+<div class="space-y-4 text-base md:text-lg font-poppins md:-ml-10">
+    <div class="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M9 17v-6h13V7H9V1H7v6H1v4h6v6h2zm2-6h8v2h-8v-2z" />
+        </svg>
+        <span>Free entry</span>
+    </div>
+    <div class="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span><strong>Open today:</strong> 09.00–18.00</span>
+    </div>
+    <div class="flex items-center gap-2">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
+            viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <span><strong>Last entry:</strong> 17.30</span>
+    </div>
+</div>
 
-                <img class="h-[370px] w-full object-cover transform -translate-x-10 z-2" alt="Carousel image 2"
-                    src="{{ asset('storage/images/anhnen4.png') }}">
+    </div>
+</div>
+
+
+
+
+<!-- Exhibitions Section -->
+<div class="py-20 mt-12 bg-neutral-900 px-4 md:px-20 text-white">
+    <div class="flex justify-between items-center mb-8">
+        <h2 class="text-3xl md:text-4xl font-semibold">Exhibitions & Events</h2>
+        <a href="{{ route('client.exhibition') }}" class="flex items-center gap-2 text-sm md:text-base font-semibold hover:underline transition">
+            See all exhibitions and events
+            <span class="text-xl">❯</span>
+        </a>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <!-- Exhibition 1 -->
+        <div class="group bg-[#2f2f2f] hover:bg-white transition duration-300 flex flex-col md:flex-row overflow-hidden">
+            <div class="p-6 flex-1">
+                <h3 class="text-2xl font-bold mb-2 text-white group-hover:text-black transition">Vẻ Đẹp Hoàng Cung</h3>
+                <p class="text-gray-300 mb-8 group-hover:text-black transition">Trang Sức Cổ Việt Nam</p>
+                <div class="text-sm mt-auto text-white group-hover:text-black transition">
+                    <p class="font-semibold">Exhibition</p>
+                    <p>4 – 5 May 2025</p>
+                </div>
+            </div>
+            <div class="flex-1 overflow-hidden">
+                <img src="{{ asset('storage/images/lam1.png') }}" alt="Exhibition 1" class="w-full h-full object-cover transition-transform transform group-hover:scale-110">
+            </div>
+        </div>
+
+        <!-- Exhibition 2 -->
+        <div class="group bg-[#2f2f2f] hover:bg-yellow-400 transition duration-300 flex flex-col md:flex-row overflow-hidden">
+            <div class="p-6 flex-1">
+                <h3 class="text-2xl font-bold mb-2 group-hover:text-black transition">Tinh Hoa Chế Tác</h3>
+                <p class="text-yellow-400 mb-8 font-semibold group-hover:text-black transition">Nghệ Nhân Và Di Sản</p>
+                <div class="text-sm mt-auto group-hover:text-black transition">
+                    <p class="font-semibold">Exhibition</p>
+                    <p>7 – 9 May 2025</p>
+                </div>
+            </div>
+            <div class="flex-1 overflow-hidden">
+                <img src="{{ asset('storage/images/lam4.jpg') }}" alt="Exhibition 2" class="w-full h-full object-cover transition-transform transform group-hover:scale-110">
             </div>
         </div>
     </div>
+</div>
+
 
     <!-- Products Section -->
     <section class="mt-12">
         <div class="relative text-center flex justify-center overflow-hidden">
             <h2
-                class="w-[881px] font-bellefair font-normal text-white text-[76.6px] text-center tracking-[0] leading-[normal]">
+                class="w-[881px] font-bellefair font-normal text-white text-[56.6px] text-center tracking-[0] leading-[normal]">
                 BỘ SƯU TẬP
             </h2>
 

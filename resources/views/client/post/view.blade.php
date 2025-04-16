@@ -12,7 +12,7 @@
     <div class="px-2">
         <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[['url' => 'client.exhibition', 'label' => 'Bài viết']]" />
 
-        <h1 class="mt-7 text-4xl text-white text-center capitalize">
+        <h1 class="mt-7 text-5xl text-white text-center capitalize">
             danh sách bài viết
         </h1>
 
