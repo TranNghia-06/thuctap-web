@@ -26,6 +26,11 @@
         }
     </style>
 </head>
+@php
+    // Lấy tên website từ cấu hình, mặc định "Chưa có tên Website"
+    $siteName = get_system_config('site_name', 'Chưa có tên Website');
+    $words = explode(' ', $siteName);
+@endphp
 
 <body class="bg-[#0d0d0d]">
     <div class="w-[1440px] mx-auto overflow-hidden">
@@ -34,38 +39,51 @@
     <div class="max-w-7xl mx-auto flex justify-between items-center">
         <!-- Logo -->
         <a href="{{ route('home') }}" class="flex items-center gap-2">
-    <!-- Logo hình -->
-    <img src="{{ asset('storage/images/logo.png') }}" alt="Museum logo" class="w-17 h-auto">
-    <!-- Tên bảo tàng -->
-    <div class="flex flex-col leading-tight">
-        <span class="text-xl font-serif">The Jewelry</span>
-        <span class="text-xl font-serif">Museum</span>
-    </div>
-        </a>
-        <!-- Menu trung tâm -->
-        <ul class="flex gap-8 items-center">
-            <li class="relative group">
-                <a href="{{ route('home') }}" class="hover:underline uppercase">Trang chủ</a>
-            </li>
-            <li class="relative group">
-                <a href="{{ route('client.exhibition') }}" class="hover:underline uppercase">Tham quan</a>
-            </li>
-            <li class="relative group">
-                <a href="{{ route('client.collection') }}" class="hover:underline uppercase">Trưng bày</a>
-            </li>
-            <li class="relative group">
-                <a href="{{ route('client.post') }}" class="hover:underline uppercase">Bài viết</a>
-            </li>
-        </ul>
+    {{-- Logo hình nếu có --}}
+    @if($logo = get_system_config('logo'))
+        <img src="{{ asset('storage/' . $logo) }}" alt="Logo" class="h-10">
+    @endif
 
- <!-- Menu bên phải -->
+    {{-- Phần chữ tên website --}}
+    <div class="flex flex-col leading-none">
+        {{-- Phần "The" --}}
+        <span class="text-xs uppercase tracking-widest font-serif opacity-70">
+            {{ $words[0] ?? '' }}
+        </span>
+        {{-- Phần "Jewelry" --}}
+        <span class="text-3xl font-serif font-light">
+            {{ $words[1] ?? '' }}
+        </span>
+        {{-- Phần "Museum" --}}
+        <span class="text-3xl font-serif font-semibold">
+            {{ $words[2] ?? '' }}
+        </span>
+    </div>
+</a>
+        <!-- Menu trung tâm -->
+<ul class="flex gap-8 items-center">
+    <li class="relative group">
+        <a href="{{ route('home') }}" class="hover:underline uppercase">{{ __('app.home') }}</a>
+    </li>
+    <li class="relative group">
+        <a href="{{ route('client.exhibition') }}" class="hover:underline uppercase">{{ __('app.exhibition') }}</a>
+    </li>
+    <li class="relative group">
+        <a href="{{ route('client.collection') }}" class="hover:underline uppercase">{{ __('app.collection') }}</a>
+    </li>
+    <li class="relative group">
+        <a href="{{ route('client.post') }}" class="hover:underline uppercase">{{ __('app.post') }}</a>
+    </li>
+</ul>
+
+<!-- Menu bên phải -->
 <div class="flex items-center gap-4">
     <!-- Giỏ hàng -->
-    <a href="{{ route('cart') }}" class="uppercase hover:underline">Giỏ hàng</a>
+    <a href="{{ route('cart') }}" class="uppercase hover:underline">{{ __('app.cart') }}</a>
 
     @guest
         <!-- Đăng nhập -->
-        <a href="{{ route('login') }}" class="uppercase hover:underline">Đăng nhập</a>
+        <a href="{{ route('login') }}" class="uppercase hover:underline">{{ __('app.login') }}</a>
     @else
         <!-- Avatar và Dropdown -->
         <div class="relative" x-data="{ open: false }">
@@ -88,6 +106,7 @@
                             Lịch sử đặt vé
                         </a>
                     </li>
+                    
                     @if (Auth::user()->is_admin)
                         <li>
                             <a href="{{ route('admin.post') }}" class="block px-4 py-2 hover:bg-gray-100">
@@ -105,8 +124,23 @@
             </div>
         </div>
     @endguest
+
+    <div class="flex gap-2">
+    <!-- Chuyển sang tiếng Việt -->
+    <form method="get" action="{{ route('lang.switch', ['locale' => 'vi']) }}">
+        <button type="submit" class="flex items-center">
+            <img src="{{ asset('storage/images/covietnam.jpg') }}" alt="Vietnam Flag" class="w-6 h-4 border {{ app()->getLocale() === 'vi' ? 'border-indigo-500' : 'border-transparent' }}">
+        </button>
+    </form>
+
+    <!-- Chuyển sang tiếng Anh -->
+    <form method="get" action="{{ route('lang.switch', ['locale' => 'en']) }}">
+        <button type="submit" class="flex items-center">
+            <img src="{{ asset('storage/images/coanhquoc.jpg') }}" alt="UK Flag" class="w-6 h-4 border {{ app()->getLocale() === 'en' ? 'border-indigo-500' : 'border-transparent' }}">
+        </button>
+    </form>
 </div>
-    </div>
+
 </nav>
         @yield('content')
 
@@ -117,39 +151,55 @@
         <div class="text-yellow-500 text-2xl font-semibold text-center mb-4 border-b-2 border-black pb-2">THEO DÕI CHÚNG TÔI</div>
 
         <!-- Danh sách mạng xã hội -->
-        <div class="grid grid-cols-2 gap-6 text-black-500">
-            <a href="https://www.facebook.com" target="_blank" class="cursor-pointer text-center hover:text-black-500 hover:font-bold">Facebook</a>
-            <a href="https://www.tiktok.com" target="_blank" class="cursor-pointer text-center hover:text-black-500 hover:font-bold">TikTok</a>
-            <a href="https://www.youtube.com" target="_blank" class="cursor-pointer text-center hover:text-black-500 hover:font-bold">YouTube</a>
-            <a href="https://www.instagram.com" target="_blank" class="cursor-pointer text-center hover:text-black-500 hover:font-bold">Instagram</a>
-        </div>
+<div class="grid grid-cols-2 gap-6 text-black-500">
+    @if($facebook = get_system_config('facebook'))
+        <a href="{{ $facebook }}" target="_blank" class="cursor-pointer text-center hover:text-black-500 hover:font-bold">Facebook</a>
+    @endif
+    @if($tiktok = get_system_config('tiktok'))
+        <a href="{{ $tiktok }}" target="_blank" class="cursor-pointer text-center hover:text-black-500 hover:font-bold">TikTok</a>
+    @endif
+    @if($youtube = get_system_config('youtube'))
+        <a href="{{ $youtube }}" target="_blank" class="cursor-pointer text-center hover:text-black-500 hover:font-bold">YouTube</a>
+    @endif
+    @if($instagram = get_system_config('instagram'))
+        <a href="{{ $instagram }}" target="_blank" class="cursor-pointer text-center hover:text-black-500 hover:font-bold">Instagram</a>
+    @endif
+</div>
     </div>
 
     <div>
         <div class="text-yellow-500 text-2xl font-semibold border-b-2 border-black pb-2">THÔNG TIN BẢO TÀNG</div>
 
         <div class="space-y-4 mt-4">
-            <!-- Địa chỉ -->
-            <div class="flex gap-3 items-center">
-                <img class="w-6 h-6" alt="Location icon"
-                    src="{{ asset('storage/images/icon-diachi.svg') }}">
-                <div class="text-black-500">123, Đường AAA, Quận BBB, TP. Hồ Chí Minh</div>
-            </div>
-
-            <!-- Số điện thoại -->
-            <div class="flex gap-3 items-center">
-                <img class="w-6 h-6" alt="Phone icon"
-                    src="{{ asset('storage/images/icon-phone.svg') }}">
-                <div class="text-black-500">0919 909 483</div>
-            </div>
-
-            <!-- Email -->
-            <div class="flex gap-3 items-center">
-                <img class="w-6 h-6" alt="Email icon"
-                    src="{{ asset('storage/images/icon-email.svg') }}">
-                <div class="text-black-500">contact@baotangtrangsuc.vn</div>
-            </div>
+    <!-- Địa chỉ -->
+    <div class="flex gap-3 items-center">
+        <img class="w-6 h-6" alt="Location icon"
+            src="{{ asset('storage/images/icon-diachi.svg') }}">
+        <div class="text-black-500">
+            {{ get_system_config('address', 'Chưa có thông tin địa chỉ') }}
         </div>
+    </div>
+
+    <!-- Số điện thoại -->
+    <div class="flex gap-3 items-center">
+        <img class="w-6 h-6" alt="Phone icon"
+            src="{{ asset('storage/images/icon-phone.svg') }}">
+        <div class="text-black-500">
+            {{ get_system_config('contact_phone', 'Chưa có số điện thoại') }}
+        </div>
+    </div>
+
+    <!-- Email -->
+    <div class="flex gap-3 items-center">
+        <img class="w-6 h-6" alt="Email icon"
+            src="{{ asset('storage/images/icon-email.svg') }}">
+        <div class="text-black-500">
+            {{ get_system_config('contact_email', 'Chưa có email') }}
+        </div>
+    </div>
+</div>
+
+
     </div>
 
     <!-- Copyright Section -->
@@ -175,7 +225,7 @@
 <hr class="custom-hr">
 
 <div class="bg-gray-100 text-gray-700 text-center py-3">
-    <p>&copy; 2025 Bảo Tàng Trang Sức Cổ Việt Nam</p>
+    <p>{{ get_system_config('footer_text', 'Chưa có footer') }}</p>
 </div>
 
 <style>

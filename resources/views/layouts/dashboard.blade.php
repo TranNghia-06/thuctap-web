@@ -126,6 +126,11 @@
             'name' => 'Bộ sưu tập',
             'icon' => 'collection',
         ],
+        [
+            'route' => 'admin.system_settings',
+            'name' => 'Cấu hình hệ thống',
+            'icon' => 'system_settings',
+        ],
     ]" />
 
     {{-- Main content --}}

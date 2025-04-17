@@ -7,6 +7,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\SystemSettingController;
 
 use App\Http\Middleware\IsAdmin;
 
@@ -176,5 +177,21 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
     Route::get('/delete/{id}', [CollectionController::class, 'showDelete'])->name('admin.collection.delete');
     Route::post('/delete/{id}', [CollectionController::class, 'delete'])->name('admin.collection.delete');
   });
+
+
+  // Quản lý cấu hình
+  Route::prefix('settings')->group(function () {
+    Route::get('/', [SystemSettingController::class, 'index'])->name('admin.system_settings');
+    Route::post('/settings', [SystemSettingController::class, 'update'])->name('admin.system_settings.update');
+  });
 });
+
+// chuyển đổi ngôn ngữ 
+Route::get('lang/{locale}', function ($locale) {
+  if (in_array($locale, ['en', 'vi'])) {
+      session()->put('locale', $locale);
+  }
+  return redirect()->back();
+})->name('lang.switch');
+
 
