@@ -200,8 +200,8 @@
                 <h3 class="text-2xl font-bold mb-2 text-white group-hover:text-black transition">Vẻ Đẹp Hoàng Cung</h3>
                 <p class="text-gray-300 mb-8 group-hover:text-black transition">Trang Sức Cổ Việt Nam</p>
                 <div class="text-sm mt-auto text-white group-hover:text-black transition">
-                    <p class="font-semibold">Exhibition</p>
-                    <p>4 – 5 May 2025</p>
+                    <p class="font-semibold">Start on</p>
+                    <p>15 – 17 May 2025</p>
                 </div>
             </div>
             <div class="flex-1 overflow-hidden">
@@ -215,8 +215,8 @@
                 <h3 class="text-2xl font-bold mb-2 group-hover:text-black transition">Tinh Hoa Chế Tác</h3>
                 <p class="text-yellow-400 mb-8 font-semibold group-hover:text-black transition">Nghệ Nhân Và Di Sản</p>
                 <div class="text-sm mt-auto group-hover:text-black transition">
-                    <p class="font-semibold">Exhibition</p>
-                    <p>7 – 9 May 2025</p>
+                    <p class="font-semibold">Start on</p>
+                    <p>27 – 30 May 2025</p>
                 </div>
             </div>
             <div class="flex-1 overflow-hidden">

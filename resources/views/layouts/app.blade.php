@@ -13,6 +13,11 @@
     <title>@yield('title') - {{ config('app.name', 'Museum') }}</title>
 
     <!-- Fonts -->
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.googleapis.com/css?family=Baskervville:400|Bellefair:400|Poppins:300,400|Roboto:300,500"
@@ -104,6 +109,11 @@
                     <li>
                         <a href="{{ route('client.exhibition.ticket.history') }}" class="block px-4 py-2 hover:bg-gray-100">
                             Lịch sử đặt vé
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('client.post.history') }}" class="block px-4 py-2 hover:bg-gray-100">
+                            Lịch sử xem bài viết
                         </a>
                     </li>
                     

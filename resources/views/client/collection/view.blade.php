@@ -38,69 +38,142 @@
             </div>
         </form>
 
-        <div class="mt-4 grid grid-cols-2 sm:grid-cols-4 gap-4">
-            @forelse ($data as $item)
-                <div class="mt-6 bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 
-                    hover:scale-105 hover:shadow-lg transition duration-300">
+        @php
+    $half = ceil($data->count() / 2);
+    $highlight = $data->take($half);
+    $best = $data->slice($half);
+@endphp
+
+<!-- Collection Highlight -->
+<h2 class="text-white text-4xl font-semibold mb-12 mt-16">Collection Highlights</h2>
+
+<div class="relative">
+    <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 overflow-hidden" id="highlight-carousel">
+        @foreach ($highlight as $item)
+            <div class="carousel-item mt-6 bg-transparent rounded-lg shadow-md overflow-hidden
+                        transition transform hover:scale-105 hover:shadow-xl">
+                <a href="{{ route('client.collection.details', $item->id) }}">
+                    <img class="h-[330px] w-full object-cover"
+                         src="{{ asset('storage/' . $item->thumbnail) }}"
+                         alt="{{ $item->name }}" />
+                </a>
+
+                <div class="p-5">
                     <a href="{{ route('client.collection.details', $item->id) }}">
-                        <img class="h-[320px] rounded-t-lg object-cover aspect-video" 
-                            src="{{ asset('storage/' . $item->thumbnail) }}" alt="" />
+                        <h5 class="mb-2 text-2xl font-bold tracking-tight text-white truncate">
+                            {{ $item->name }}
+                        </h5>
                     </a>
 
-                    <div class="p-5">
-                        <a href="{{ route('client.collection.details', $item->id) }}">
-                            <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white truncate">
-                                {{ $item->name }}
-                            </h5>
-                        </a>
+                    <!-- <p class="mb-3 text-gray-300 line-clamp-1">
+                        {{ $item->description }}
+                    </p> -->
 
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-1">
-                            {{ $item->description }}
-                        </p>
-
-                        <p class="font-normal line-clamp-1 text-gray-700">
-                            <span class="font-semibold">Thuộc loại bộ sưu tập:</span>
-                            {{ $item->formatted_type }}
-                        </p>
-
-                        <div>
-                            @if ($item->is_sale)
-                                <a href="{{ route('cart.add', $item->id) }}"
-                                    class="inline-flex mt-3 items-center px-3 py-2 text-sm font-medium text-center text-white 
-                                    bg-green-700 rounded-lg hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300 
-                                    dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">
-                                    Thêm giỏ hàng
-                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" 
-                                        xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" 
-                                        viewBox="0 0 24 24">
-                                        <path fill-rule="evenodd"
-                                            d="M6 5V4a1 1 0 1 1 2 0v1h3V4a1 1 0 1 1 2 0v1h3V4a1 1 0 1 1 2 0v1h1a2 2 0 0 1 2 2v2H3V7a2 2 0 0 1 2-2h1ZM3 19v-8h18v8a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Zm5-6a1 1 0 1 0 0 2h8a1 1 0 1 0 0-2H8Z"
-                                            clip-rule="evenodd" />
-                                    </svg>
-                                </a>
-                            @endif
-
-                            <a href="{{ route('client.collection.details', $item->id) }}"
-                                class="inline-flex mt-3 items-center px-3 py-2 text-sm font-medium text-center text-white 
-                                bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 
-                                dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Xem chi tiết
-                                <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" 
-                                        stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
-                                </svg>
+                    <div class="flex flex-wrap gap-2 mt-3">
+                        @if($item->is_sale)
+                            <a href="{{ route('cart.add', $item->id) }}"
+                               class="text-sm font-medium text-white bg-green-600 px-3 py-2 rounded
+                                      transition hover:bg-green-700">
+                                Thêm giỏ hàng
                             </a>
-                        </div>
+                        @endif
+
+                        <!-- <a href="{{ route('client.collection.details', $item->id) }}"
+                           class="text-sm font-medium text-white bg-blue-600 px-3 py-2 rounded
+                                  transition hover:bg-blue-700">
+                            Xem chi tiết
+                        </a> -->
                     </div>
                 </div>
-            @empty
-                <div class="col-span-4">
-                    <x-ui.alert type="warning">
-                        {{ $searching ? 'Không tìm thấy bộ sưu tập với từ khóa "' . $searching . '"' : 'Chưa có bộ sưu tập nào' }}
-                    </x-ui.alert>
-                </div>
-            @endforelse
-        </div>
+            </div>
+        @endforeach
+    </div>
+
+    <!-- Nút chuyển động qua lại -->
+    <button id="prev-btn" class="absolute top-1/2 left-0 transform -translate-y-1/2 text-white bg-gray-800 hover:bg-gray-600 p-2 rounded-r-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+    </button>
+    <button id="next-btn" class="absolute top-1/2 right-0 transform -translate-y-1/2 text-white bg-gray-800 hover:bg-gray-600 p-2 rounded-l-lg">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+    </button>
+</div>
+
+<!-- Thêm JavaScript cho hiệu ứng chuyển động -->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const carousel = document.getElementById('highlight-carousel');
+        const prevBtn = document.getElementById('prev-btn');
+        const nextBtn = document.getElementById('next-btn');
+        const itemsPerPage = 4; // Số lượng item hiển thị mỗi lần
+        let currentIndex = 0;
+
+        // Hiển thị các item theo nhóm
+        function showItems() {
+            const items = carousel.querySelectorAll('.carousel-item');
+            items.forEach((item, index) => {
+                item.style.display = (index >= currentIndex && index < currentIndex + itemsPerPage) ? 'block' : 'none';
+            });
+        }
+
+        // Next Button - chuyển qua phải
+        nextBtn.addEventListener('click', () => {
+            if (currentIndex + itemsPerPage < carousel.querySelectorAll('.carousel-item').length) {
+                currentIndex += itemsPerPage;
+            }
+            showItems();
+        });
+
+        // Prev Button - chuyển qua trái
+        prevBtn.addEventListener('click', () => {
+            if (currentIndex - itemsPerPage >= 0) {
+                currentIndex -= itemsPerPage;
+            }
+            showItems();
+        });
+
+        // Khởi động hiển thị ban đầu
+        showItems();
+    });
+</script>
+
+<hr class="w-2/2 mb-12 mt-16 border-t-1 border-gray-300 opacity-50 mx-auto">
+
+<!-- Collection Best -->
+<h2 class="text-white text-4xl font-semibold mb-12 mt-16">All Collections</h2>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+    @foreach ($best as $item)
+        <a href="{{ route('client.collection.details', $item->id) }}"
+           class="group block bg-neutral-900 rounded-md overflow-hidden 
+                  hover:bg-neutral-800 transition-all duration-300 shadow-sm hover:shadow-xl">
+            <div class="overflow-hidden">
+                <img src="{{ asset('storage/' . $item->thumbnail) }}"
+                     class="w-full h-93 object-cover transform transition-transform duration-300 group-hover:scale-105"
+                     alt="{{ $item->name }}" />
+            </div>
+
+            <div class="p-4">
+                <h3 class="text-white text-xl font-semibold group-hover:underline">
+                    {{ $item->name }}
+                </h3>
+                <p class="text-gray-300 mt-2 text-sm line-clamp-3">
+                    {{ $item->description }}
+                </p>
+            </div>
+        </a>
+    @endforeach
+</div>
     </div>
 @endsection
+
+<style>
+    /* Nếu bạn cần custom thêm hiệu ứng */
+.carousel-button {
+    transition: transform 0.3s ease-in-out;
+}
+
+</style>

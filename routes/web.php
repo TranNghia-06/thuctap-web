@@ -37,9 +37,10 @@ Route::prefix('collection')->group(function () {
 // Nhóm route dành cho Bài viết (Post) của khách hàng
 Route::prefix('post')->group(function () {
   Route::get('/', [ClientPostController::class, 'index'])->name('client.post');
-  Route::get('/{id}', [ClientPostController::class, 'details'])->name('client.post.details');
+  Route::get('/{id}', [ClientPostController::class, 'details'])->name('client.post.details')->middleware('auth');
 
   Route::post('/{id}/view', [ClientPostController::class, 'increaseView'])->name('post.increase.view');
+  Route::get('/history/view', [ClientPostController::class, 'history'])->name('client.post.history')->middleware('auth');
 });
 
 

@@ -22,7 +22,7 @@
         <div class="flex justify-center mb-10">
             <img src="{{ asset('storage/' . $data->thumbnail) }}"
                 alt="{{ $data->title }}"
-                class="rounded-2xl shadow-2xl max-w-3xl w-full object-cover">
+                class="rounded-2xl shadow-2xl max-w-3xl w-72 h-[550px] object-cover">
         </div>
 
         {{-- Mô tả và Giá (nếu có) --}}
