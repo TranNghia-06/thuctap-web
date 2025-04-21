@@ -68,27 +68,27 @@
         <!-- Menu trung tâm -->
 <ul class="flex gap-8 items-center">
     <li class="relative group">
-        <a href="{{ route('home') }}" class="hover:underline uppercase">{{ __('app.home') }}</a>
+        <a href="{{ route('home') }}" class="hover:underline uppercase">Visit</a>
     </li>
     <li class="relative group">
-        <a href="{{ route('client.exhibition') }}" class="hover:underline uppercase">{{ __('app.exhibition') }}</a>
+        <a href="{{ route('client.exhibition') }}" class="hover:underline uppercase">Exhibitions & Events</a>
     </li>
     <li class="relative group">
-        <a href="{{ route('client.collection') }}" class="hover:underline uppercase">{{ __('app.collection') }}</a>
+        <a href="{{ route('client.collection') }}" class="hover:underline uppercase">Collection</a>
     </li>
     <li class="relative group">
-        <a href="{{ route('client.post') }}" class="hover:underline uppercase">{{ __('app.post') }}</a>
+        <a href="{{ route('client.post') }}" class="hover:underline uppercase">Post</a>
     </li>
 </ul>
 
 <!-- Menu bên phải -->
 <div class="flex items-center gap-4">
     <!-- Giỏ hàng -->
-    <a href="{{ route('cart') }}" class="uppercase hover:underline">{{ __('app.cart') }}</a>
+    <a href="{{ route('cart') }}" class="uppercase hover:underline">shopping cart</a>
 
     @guest
         <!-- Đăng nhập -->
-        <a href="{{ route('login') }}" class="uppercase hover:underline">{{ __('app.login') }}</a>
+        <a href="{{ route('login') }}" class="uppercase hover:underline">Login</a>
     @else
         <!-- Avatar và Dropdown -->
         <div class="relative" x-data="{ open: false }">
@@ -108,26 +108,26 @@
                 <ul>
                     <li>
                         <a href="{{ route('client.exhibition.ticket.history') }}" class="block px-4 py-2 hover:bg-gray-100">
-                            Lịch sử đặt vé
+                        Booking history
                         </a>
                     </li>
                     <li>
                         <a href="{{ route('client.post.history') }}" class="block px-4 py-2 hover:bg-gray-100">
-                            Lịch sử xem bài viết
+                        Post View History
                         </a>
                     </li>
                     
                     @if (Auth::user()->is_admin)
                         <li>
                             <a href="{{ route('admin.post') }}" class="block px-4 py-2 hover:bg-gray-100">
-                                Quản trị Admin
+                                ADmin
                             </a>
                         </li>
                     @endif
                     <li>
                         <button data-modal-target="popup-modal-logout" data-modal-toggle="popup-modal-logout"
                                 class="w-full text-left px-4 py-2 hover:bg-gray-100">
-                            Đăng xuất
+                            Logout
                         </button>
                     </li>
                 </ul>
@@ -158,7 +158,7 @@
         <footer class=" w-full flex justify-between mt-12 bg-gray-100 text-gray-800 py-10 px-10">
     <div>
         <!-- Tiêu đề Theo dõi -->
-        <div class="text-yellow-500 text-2xl font-semibold text-center mb-4 border-b-2 border-black pb-2">THEO DÕI CHÚNG TÔI</div>
+        <div class="text-yellow-500 text-2xl font-semibold text-center mb-4 border-b-2 border-black pb-2">FOLLOW US</div>
 
         <!-- Danh sách mạng xã hội -->
 <div class="grid grid-cols-2 gap-6 text-black-500">
@@ -178,7 +178,7 @@
     </div>
 
     <div>
-        <div class="text-yellow-500 text-2xl font-semibold border-b-2 border-black pb-2">THÔNG TIN BẢO TÀNG</div>
+        <div class="text-yellow-500 text-2xl font-semibold border-b-2 border-black pb-2">MUSEUM INFORMATION</div>
 
         <div class="space-y-4 mt-4">
     <!-- Địa chỉ -->
@@ -225,9 +225,9 @@
             </h2>
 
             <p class="font-poppins text-gray-700 text-[14px] px-4 italic leading-relaxed border-t border-gray-500 pt-4">
-                “ Cảm ơn bạn đã dành thời gian đến với  
-                <span class="text-yellow-500 font-medium">Bảo tàng Trang Sức Cổ Việt Nam</span>.  
-                Hy vọng bạn có một trải nghiệm thú vị. Hẹn gặp lại! ” 
+                “ Thank you for taking the time to visit the  
+                <span class="text-yellow-500 font-medium">Vietnam Museum of Ancient Jewelry.</span>.  
+                Hope you have an enjoyable experience. See you again! ” 
             </p>
         </div>
     </section>
@@ -268,18 +268,18 @@
                             d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                     <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                        Bạn có chắc muốn đăng xuất không?</h3>
+                    Are you sure you want to log out?</h3>
                     <button data-modal-hide="popup-modal-logout"
                         onclick="event.preventDefault();
                                      document.getElementById('logout-form').submit();"
                         type="button"
                         class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
-                        Đồng ý
+                        Yes
                     </button>
 
                     <button data-modal-hide="popup-modal-logout" type="button"
-                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Huỷ
-                        bỏ</button>
+                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
+                        No</button>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf

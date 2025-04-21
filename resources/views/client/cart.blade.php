@@ -13,7 +13,7 @@
         <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[['url' => 'cart', 'label' => 'Giỏ hàng']]" />
 
         <h1 class="text-2xl capitalize mt-2">
-            {{ __('Giỏ hàng của bạn') }}
+            {{ __('Your shopping cart') }}
         </h1>
 
         @if (session('error'))

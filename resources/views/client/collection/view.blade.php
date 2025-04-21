@@ -13,7 +13,7 @@
         <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[['url' => 'client.collection', 'label' => 'Bộ sưu tập']]" />
 
         <h1 class="mt-7 text-5xl text-white text-center capitalize">
-            Danh sách bộ sưu tập
+        List of collections
         </h1>
 
         <!-- Thanh tìm kiếm -->

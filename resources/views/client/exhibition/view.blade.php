@@ -6,7 +6,7 @@
 
 @section('content')
 <div class="bg-black px-4 py-10 min-h-screen">
-    <h1 class="text-white text-5xl font-bold text-center mb-12">Danh Sách Buổi Triển Lãm</h1>
+    <h1 class="text-white text-5xl font-bold text-center mb-12">List Of Exhibitions</h1>
 
     {{-- Thanh ngang trước "Exhibition of the Month" --}}
     <hr class="w-1/2 mb-12 mt-16 border-t-1 border-gray-300 opacity-50 mx-auto">
@@ -86,7 +86,7 @@
 
     {{-- Tiêu đề Special Exhibition --}}
     <div class="mt-10 mb-8">
-        <h2 class="text-white text-4xl font-semibold">Special Exhibition</h2>
+        <h2 class="text-white text-4xl font-semibold">Special Event</h2>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">

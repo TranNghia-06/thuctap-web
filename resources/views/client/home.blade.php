@@ -36,16 +36,16 @@
 
         <h1
             class="absolute w-[1140px] top-[275px] left-[320px] font-bellefair font-normal text-white text-[65px] text-center tracking-[0] leading-[normal]">
-            BẢO TỒN LỊCH SỬ ĐỂ KIẾN TẠO TƯƠNG LAI
+            PRESERVING HISTORY TO CREATE THE FUTURE
         </h1>
 
         <h2
-            class="absolute w-[450px] top-[1330px] left-[303px] font-bellefair font-normal text-white text-[90px] tracking-[0] leading-[normal]">
-            NƠI LƯU GIỮ NÉT ĐẸP VĂN HÓA
+            class="absolute w-[450px] top-[1330px] left-[270px] font-bellefair font-normal text-white text-[87px] tracking-[0] leading-[normal]">
+            A PLACE TO PRESERVE CULTURAL BEAUTY
         </h2>
         <p
             class="absolute w-[810px] top-[2114px] left-[735px] font-poppins font-light text-white text-2xl tracking-[0] leading-[39.2px]">
-            Bảo tàng Trang sức Cổ Việt Nam là không gian trưng bày những tuyệt tác trang sức mang đậm dấu ấn lịch sử và văn hóa dân tộc. Tại đây, bạn sẽ khám phá những bộ sưu tập tinh xảo từ các triều đại xưa, minh chứng cho nghệ thuật chế tác thủ công tinh tế và giá trị truyền thống quý báu. Không chỉ là nơi lưu giữ di sản, bảo tàng còn mang đến cơ hội trải nghiệm, mua sắm và tìm hiểu sâu hơn về vẻ đẹp vượt thời gian của trang sức cổ Việt Nam.
+            The Vietnam Antique Jewelry Museum is a space to display jewelry masterpieces bearing the mark of national history and culture. Here, you will discover exquisite collections from ancient dynasties, testament to the delicate craftsmanship and precious traditional values. Not only is it a place to preserve heritage, the museum also offers the opportunity to experience, shop and learn more about the timeless beauty of ancient Vietnamese jewelry.
         </p>
         
 
@@ -67,14 +67,14 @@
 
                 <h2
                     class="font-Playfair Display font-bold  text-white text-[61.6px] tracking-[0] leading-[normal] whitespace-nowrap my-8">
-                    Buổi Triển Lãm
+                    Exhibition
                 </h2>
 
                 <hr class="w-[731px] h-1 bg-[#727272]">
             </div>
             <a href="{{ route('client.exhibition') }}" class="w-[115px] h-[115px] rounded-full border-[0.77px] border-solid border-white bg-transparent flex items-center justify-center transition-all duration-300 ease-in-out hover:bg-[#808080] hover:scale-105 -translate-x-4">
                 <span class="font-bellefair font-normal text-white text-[22.1px] tracking-[0] leading-[normal] whitespace-nowrap">
-                    Xem thêm
+                See more
                 </span>
             </a>
             
@@ -165,7 +165,7 @@
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                 d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
-        <span><strong>Open today:</strong> 09.00–18.00</span>
+        <span><strong>Open today:</strong> 07.00–19.00</span>
     </div>
     <div class="flex items-center gap-2">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
@@ -232,7 +232,7 @@
         <div class="relative text-center flex justify-center overflow-hidden">
             <h2
                 class="w-[881px] font-bellefair font-normal text-white text-[56.6px] text-center tracking-[0] leading-[normal]">
-                BỘ SƯU TẬP
+                COLLECTION
             </h2>
 
             <img class="absolute right-0 object-cover top-1/2 transform -translate-y-1/2 z-1 translate-x-28"
@@ -308,7 +308,7 @@
             <button class="relative w-[290px] h-[95px] p-0 cursor-pointer transform hover:scale-105 transition duration-300 ease-in-out">
                 <div class="z-0 absolute w-[95px] h-[95px] top-0 left-10 bg-[#363636] rounded-[47.58px]"></div>
                 <span class="relative z-10 font-roboto font-medium text-white text-[30.7px] tracking-[0] leading-[normal] whitespace-nowrap">
-                    Xem tất cả
+                View all
                 </span>
             </button>
         </a>

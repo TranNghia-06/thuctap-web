@@ -13,7 +13,7 @@
         <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[['url' => 'client.exhibition', 'label' => 'Lịch sử đặt vé']]" />
 
         <h1 class="text-2xl text-white capitalize">
-            Danh sách đặt vé buổi triển lãm
+        List of exhibition tickets
         </h1>
 
         @if (session('success'))
