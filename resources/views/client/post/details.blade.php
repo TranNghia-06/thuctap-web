@@ -7,8 +7,8 @@
 @section('content')
     <div class="px-4 md:px-10 lg:px-20 py-6 text-white">
         <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[
-            ['url' => 'client.post', 'label' => 'Bài viết'],
-            ['url' => 'client.post.details', 'param' => $data->id, 'label' => 'Chi tiết bài viết'],
+            ['url' => 'client.post', 'label' => 'Article'],
+            ['url' => 'client.post.details', 'param' => $data->id, 'label' => 'Article details'],
         ]" />
 <!-- Thông tin bài viết -->
     <div class="mb-6 mt-6 text-gray-300">

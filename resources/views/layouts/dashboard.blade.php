@@ -127,6 +127,11 @@
             'icon' => 'collection',
         ],
         [
+            'route' => 'admin.photo',
+            'name' => 'Thư viện ảnh',
+            'icon' => 'photo',
+        ],
+        [
             'route' => 'admin.system_settings',
             'name' => 'Cấu hình hệ thống',
             'icon' => 'system_settings',

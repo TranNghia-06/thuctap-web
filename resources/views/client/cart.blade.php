@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="text-white px-2">
-        <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[['url' => 'cart', 'label' => 'Giỏ hàng']]" />
+        <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[['url' => 'cart', 'label' => 'Shopping Cart']]" />
 
         <h1 class="text-2xl capitalize mt-2">
             {{ __('Your shopping cart') }}

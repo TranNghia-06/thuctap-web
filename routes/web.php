@@ -8,7 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\SystemSettingController;
-
+use App\Http\Controllers\ImageController;
 use App\Http\Middleware\IsAdmin;
 
 use Illuminate\Support\Facades\Route; 
@@ -185,6 +185,15 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
     Route::get('/', [SystemSettingController::class, 'index'])->name('admin.system_settings');
     Route::post('/settings', [SystemSettingController::class, 'update'])->name('admin.system_settings.update');
   });
+
+//image
+  Route::get('/photo', [ImageController::class, 'index'])->name('admin.photo');
+  Route::get('/photo/create', [ImageController::class, 'create'])->name('admin.photo.create');
+  Route::post('/photo', [ImageController::class, 'store'])->name('admin.photo.store');
+  Route::get('/photo/{id}/edit', [ImageController::class, 'edit'])->name('admin.photo.edit');
+  Route::put('/photo/{id}', [ImageController::class, 'update'])->name('admin.photo.update');
+  Route::delete('/photo/{id}', [ImageController::class, 'destroy'])->name('admin.photo.delete');
+
 });
 
 // chuyển đổi ngôn ngữ 

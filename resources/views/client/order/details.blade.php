@@ -12,8 +12,8 @@
 @section('content')
     <div class="text-white px-2">
         <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[
-            ['url' => 'order.history', 'label' => 'Lịch sử đặt hàng'],
-            ['url' => 'client.ticket.details', 'label' => 'Chi tiết đơn hàng'],
+            ['url' => 'order.history', 'label' => 'Order history'],
+            ['url' => 'client.ticket.details', 'label' => 'Order details'],
         ]" />
 
         <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16 mt-4">

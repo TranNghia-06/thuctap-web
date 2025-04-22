@@ -7,8 +7,8 @@
 @section('content')
     <div class="px-4 py-6 bg-white text-black min-h-screen">
         <x-ui.breadcrumb :is-admin="0" :breadcrumbs="[
-            ['url' => 'client.exhibition', 'label' => 'Buổi triển lãm'],
-            ['url' => 'client.ticket.details', 'label' => 'Chi tiết buổi triển lãm'],
+            ['url' => 'client.exhibition', 'label' => 'Exhibition'],
+            ['url' => 'client.ticket.details', 'label' => 'Exhibition details'],
         ]" />
 
         <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-6 bg-white border border-gray-200 p-6 rounded-xl shadow-md">

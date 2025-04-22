@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="px-2">
-        <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[['url' => 'client.post.history', 'label' => 'Lịch sử xem bài viết']]" />
+        <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[['url' => 'client.post.history', 'label' => 'Post View History']]" />
 
         <h1 class="text-2xl text-white capitalize">
             Danh sách bài viết đã xem

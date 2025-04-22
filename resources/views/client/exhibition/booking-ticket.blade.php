@@ -7,9 +7,9 @@
 @section('content')
     <div class="bg-white text-gray-900 px-4 py-6 min-h-screen">
         <x-ui.breadcrumb :is-admin="0" :breadcrumbs="[
-            ['url' => 'client.exhibition', 'label' => 'Buổi triển lãm'],
+            ['url' => 'client.exhibition', 'label' => 'Exhibition'],
             ['url' => 'client.exhibition.details', 'param' => $data->id, 'label' => $data->title],
-            ['url' => 'client.exhibition.booking', 'param' => $data->id, 'label' => 'Đặt vé cho buổi triển lãm'],
+            ['url' => 'client.exhibition.booking', 'param' => $data->id, 'label' => 'Book tickets for the exhibition'],
         ]" />
 
         <h1 class="text-3xl font-bold mt-6 mb-4">{{ $data->title }}</h1>

@@ -44,10 +44,10 @@
     <div class="max-w-7xl mx-auto flex justify-between items-center">
         <!-- Logo -->
         <a href="{{ route('home') }}" class="flex items-center gap-2">
-    {{-- Logo hình nếu có --}}
+    <!-- {{-- Logo hình nếu có --}}
     @if($logo = get_system_config('logo'))
         <img src="{{ asset('storage/' . $logo) }}" alt="Logo" class="h-10">
-    @endif
+    @endif -->
 
     {{-- Phần chữ tên website --}}
     <div class="flex flex-col leading-none">
@@ -120,7 +120,7 @@
                     @if (Auth::user()->is_admin)
                         <li>
                             <a href="{{ route('admin.post') }}" class="block px-4 py-2 hover:bg-gray-100">
-                                ADmin
+                                ADmin Dashboard
                             </a>
                         </li>
                     @endif

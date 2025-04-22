@@ -10,7 +10,7 @@
 
 @section('content')
     <div class="px-2">
-        <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[['url' => 'client.exhibition', 'label' => 'Lịch sử đặt vé']]" />
+        <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[['url' => 'client.exhibition', 'label' => 'Booking history']]" />
 
         <h1 class="text-2xl text-white capitalize">
         List of exhibition tickets

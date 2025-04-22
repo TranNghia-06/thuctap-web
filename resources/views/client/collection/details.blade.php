@@ -8,8 +8,8 @@
     <div class="bg-black text-white px-6 py-8 min-h-screen">
         {{-- Breadcrumb --}}
         <x-ui.breadcrumb :is-admin="0" :breadcrumbs="[
-            ['url' => 'client.collection', 'label' => 'Bộ sưu tập'],
-            ['url' => 'client.collection.details', 'param' => $data->id, 'label' => 'Chi tiết bộ sưu tập'],
+            ['url' => 'client.collection', 'label' => 'Collection'],
+            ['url' => 'client.collection.details', 'param' => $data->id, 'label' => 'Collection details'],
         ]" />
 
         {{-- Tiêu đề --}}

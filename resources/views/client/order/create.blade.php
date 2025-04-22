@@ -13,8 +13,8 @@
 @section('content')
     <div class="text-white px-4">
         <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[
-            ['url' => 'cart', 'label' => 'Giỏ hàng'],
-            ['url' => 'client.post.details', 'label' => 'Tiến hành mua hàng'],
+            ['url' => 'cart', 'label' => 'Shopping Cart'],
+            ['url' => 'client.post.details', 'label' => 'Proceed to purchase'],
         ]" />
     </div>
 
