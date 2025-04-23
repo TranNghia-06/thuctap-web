@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('Mua hàng') }}
+    {{ __('Purchase') }}
 @endsection
 
 @php
-    $columns = ['Tên sản phẩm', 'Số lượng', 'Đơn giá', 'Tổng tiền'];
+    $columns = ['Product Name', 'Quantity', 'Unit Price', 'Total'];
     $totalPrice = 0;
     $totalQuantity = 0;
 @endphp
@@ -14,7 +14,7 @@
     <div class="text-white px-4">
         <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[
             ['url' => 'cart', 'label' => 'Shopping Cart'],
-            ['url' => 'client.post.details', 'label' => 'Proceed to purchase'],
+            ['url' => 'client.post.details', 'label' => 'Proceed to Purchase'],
         ]" />
     </div>
 
@@ -25,11 +25,11 @@
 
                 <div class="max-w-3xl mx-auto space-y-6">
                     <h2 class="text-2xl font-bold text-gray-900 dark:text-white">
-                        {{ __('Thông tin đơn hàng') }}
+                        {{ __('Order Information') }}
                     </h2>
 
-                    <x-form.textarea-field name="notes" label="Ghi chú" :value="old('notes')"
-                        placeholder="Hãy nhập ghi chú." />
+                    <x-form.textarea-field name="notes" label="Note" :value="old('notes')"
+                        placeholder="Please enter a note." />
 
                     <div class="overflow-x-auto rounded-lg border border-gray-200 dark:border-gray-800">
                         <table class="w-full table-auto text-left text-gray-900 dark:text-white">
@@ -67,22 +67,22 @@
                         </table>
                     </div>
 
-                    <!-- Tổng quan đơn hàng -->
+                    <!-- Order Overview -->
                     <div class="mt-6">
                         <h3 class="text-xl font-semibold text-gray-900 dark:text-white mb-4">
-                            {{ __('Tổng quan về đơn hàng') }}
+                            {{ __('Order Summary') }}
                         </h3>
 
                         <div class="bg-gray-100 dark:bg-gray-800 rounded-xl shadow-sm p-6 space-y-4">
                             <div class="flex justify-between items-center">
-                                <span class="text-gray-600 dark:text-gray-400">{{ __('Tổng đơn giá') }}</span>
+                                <span class="text-gray-600 dark:text-gray-400">{{ __('Total Price') }}</span>
                                 <span class="font-medium text-gray-900 dark:text-white">
                                     {{ number_format($totalPrice) }} VND
                                 </span>
                             </div>
 
                             <div class="flex justify-between items-center">
-                                <span class="text-gray-600 dark:text-gray-400">{{ __('Tổng số lượng') }}</span>
+                                <span class="text-gray-600 dark:text-gray-400">{{ __('Total Quantity') }}</span>
                                 <span class="font-medium text-green-600 dark:text-green-400">
                                     {{ $totalQuantity }}
                                 </span>
@@ -90,7 +90,7 @@
 
                             <div class="border-t border-gray-300 dark:border-gray-700 pt-4 mt-4 flex justify-between items-center">
                                 <span class="text-lg font-bold text-gray-900 dark:text-white">
-                                    {{ __('Tổng tiền') }}
+                                    {{ __('Total Amount') }}
                                 </span>
                                 <span class="text-2xl font-extrabold text-blue-600 dark:text-blue-400">
                                     {{ number_format($totalPrice) }} VND
@@ -99,16 +99,16 @@
                         </div>
                     </div>
 
-                    <!-- Nút hành động -->
+                    <!-- Action Buttons -->
                     <div class="flex flex-col sm:flex-row sm:justify-between gap-4 pt-6">
                         <a href="{{ route('client.collection') }}"
                             class="w-full text-center rounded-lg border border-gray-300 bg-white px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
-                            {{ __('Quay lại') }}
+                            {{ __('Back') }}
                         </a>
 
                         <button type="submit"
                             class="w-full rounded-lg bg-blue-600 hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 text-white px-5 py-3 text-sm font-medium dark:bg-blue-500 dark:hover:bg-blue-600 dark:focus:ring-blue-800">
-                            {{ __('Mua hàng') }}
+                            {{ __('Purchase') }}
                         </button>
                     </div>
                 </div>

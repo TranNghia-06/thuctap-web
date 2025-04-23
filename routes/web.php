@@ -20,6 +20,7 @@ use App\Http\Controllers\Client\ExhibitionController as ClientExhibitionControll
 use App\Http\Controllers\Client\PostController as ClientPostController;
 use App\Http\Controllers\Client\CartController as ClientCartController;
 use App\Http\Controllers\Client\OrderController as ClientOrderController;
+use App\Http\Controllers\Client\UserController as ClientUserController;
 
 // Xác thực người dùng
 Auth::routes();
@@ -74,6 +75,12 @@ Route::middleware('auth')->prefix('order')->group(function () {
   Route::get('/{id}', [ClientOrderController::class, 'details'])->name('order.details');
 });
 
+
+// Nhóm route dành cho user AccountSetting
+Route::middleware('auth')->prefix('user')->group(function () {
+    Route::get('/setting', [ClientUserController::class, 'setting'])->name('client.user.setting');
+    Route::post('/setting', [ClientUserController::class, 'updateSetting'])->name('client.user.setting');
+});
 
 
 // Nhóm route dành cho Quản trị viên (Admin), yêu cầu đăng nhập và quyền admin
@@ -183,7 +190,7 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
   // Quản lý cấu hình
   Route::prefix('settings')->group(function () {
     Route::get('/', [SystemSettingController::class, 'index'])->name('admin.system_settings');
-    Route::post('/settings', [SystemSettingController::class, 'update'])->name('admin.system_settings.update');
+    Route::post('/', [SystemSettingController::class, 'update'])->name('admin.system_settings.update');
   });
 
 //image
@@ -193,7 +200,7 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
   Route::get('/photo/{id}/edit', [ImageController::class, 'edit'])->name('admin.photo.edit');
   Route::put('/photo/{id}', [ImageController::class, 'update'])->name('admin.photo.update');
   Route::delete('/photo/{id}', [ImageController::class, 'destroy'])->name('admin.photo.delete');
-
+  
 });
 
 // chuyển đổi ngôn ngữ 

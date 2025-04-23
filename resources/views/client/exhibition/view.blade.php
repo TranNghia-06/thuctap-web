@@ -65,7 +65,7 @@
                     {{-- Nút Chi tiết --}}
                     <div class="mt-auto">
                         <div class="inline-flex items-center justify-between w-full bg-black text-white px-4 py-3 rounded-md text-sm font-medium border border-white transition-all duration-300 group-hover:bg-white group-hover:text-black group-hover:scale-105">
-                            Chi tiết
+                        Detail
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -77,7 +77,7 @@
             </a>
         @empty
             <div class="col-span-3 text-center text-white p-10 border-2 border-dashed border-white rounded-lg">
-                <p>Chưa có buổi triển lãm nào được lên lịch.</p>
+                <p>No exhibitions have been scheduled yet.</p>
             </div>
         @endforelse
     </div>
@@ -139,7 +139,7 @@
                     {{-- Nút Chi tiết --}}
                     <div class="mt-auto">
                         <div class="inline-flex items-center justify-between w-full bg-black text-white px-4 py-3 rounded-md text-sm font-medium border border-white transition-all duration-300 group-hover:bg-white group-hover:text-black group-hover:scale-105">
-                            Chi tiết
+                        Details
                             <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 ml-2" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -151,7 +151,7 @@
             </a>
         @empty
             <div class="col-span-3 text-center text-white p-10 border-2 border-dashed border-white rounded-lg">
-                <p>Chưa có buổi triển lãm nào được lên lịch.</p>
+                <p>No exhibitions have been scheduled yet.</p>
             </div>
         @endforelse
     </div>

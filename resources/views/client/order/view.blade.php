@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('Danh sách đơn hàng') }}
+    {{ __('Order List') }}
 @endsection
 
 @php
-    $columns = ['Khách hàng', 'Tổng tiền', 'Tổng SL', 'Thời gian đặt', 'Ghi chú', 'Trạng thái', 'Hành động'];
+    $columns = ['Customer', 'Total Price', 'Total Qty', 'Order Time', 'Notes', 'Status', 'Actions'];
 @endphp
 
 @section('content')
@@ -13,7 +13,7 @@
         <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[['url' => 'client.exhibition', 'label' => 'Booking history']]" />
 
         <h1 class="text-2xl text-white capitalize">
-        List of exhibition tickets
+            List of exhibition tickets
         </h1>
 
         @if (session('success'))
@@ -28,23 +28,18 @@
                     @forelse ($data as $item)
                         <x-ui.table-row>
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <p>
-                                    {{ $item->user->name }}
-                                </p>
-
-                                <p>
-                                    {{ $item->user->email }}
-                                </p>
+                                <p>{{ $item->user->name }}</p>
+                                <p>{{ $item->user->email }}</p>
                             </th>
 
-                            <td class="px-6 py-4  truncate max-w-[100px]">
+                            <td class="px-6 py-4 truncate max-w-[100px]">
                                 <a href="{{ route('admin.order.edit', $item->id) }}"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                     {{ $item->formatted_total_price }}
                                 </a>
                             </td>
 
-                            <td class="px-6 py-4  truncate max-w-[100px]">
+                            <td class="px-6 py-4 truncate max-w-[100px]">
                                 {{ $item->total_quantity }}
                             </td>
 
@@ -63,14 +58,14 @@
                             <td class="px-6 py-4 text-nowrap">
                                 <a href={{ route('order.details', $item->id) }}
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
-                                    {{ __('Xem chi tiết') }}
+                                    {{ __('View details') }}
                                 </a>
                             </td>
                         </x-ui.table-row>
                     @empty
                         <x-ui.table-row>
                             <td class="px-6 py-4 text-center dark:text-white" colspan="{{ count($columns) }}">
-                                Bạn chưa có đơn hàng nào
+                                You haven't placed any orders yet
                             </td>
                         </x-ui.table-row>
                     @endforelse
@@ -79,7 +74,7 @@
         </div>
 
         <div class="mt-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow sm:flex sm:items-center sm:justify-between">
-            <x-common.pagination-info :paginator="$data" unit="đơn hàng" />
+            <x-common.pagination-info :paginator="$data" unit="orders" />
             <x-ui.pagination :paginator="$data" />
         </div>
     </div>

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('Danh sách buổi triển lãm') }}
+    {{ __('Exhibition ticket booking history') }}
 @endsection
 
 @php
-    $columns = ['Khách hàng', 'Tổng tiền', 'Số lượng vé', 'Thời gian đặt', 'Buổi triển lãm', 'Ghi chú', 'Trạng thái'];
+    $columns = ['Customer', 'Total Amount', 'Number of Tickets', 'Booking Time', 'Exhibition', 'Note', 'Status'];
 @endphp
 
 @section('content')
@@ -13,7 +13,7 @@
         <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[['url' => 'client.exhibition', 'label' => 'Booking history']]" />
 
         <h1 class="text-2xl text-white capitalize">
-            Danh sách đặt vé buổi triển lãm
+        List of exhibition tickets
         </h1>
 
         @if (session('success'))
@@ -38,7 +38,7 @@
                             </th>
 
                             <td class="px-6 py-4  truncate max-w-[100px]">
-                                {{ $item->total_price == 0 ? 'Miễn phí' : number_format($item->total_price) . ' VND' }}
+                                {{ $item->total_price == 0 ? 'Free of charge' : number_format($item->total_price) . ' VND' }}
                             </td>
 
                             <td class="px-6 py-4  truncate max-w-[100px]">
@@ -49,38 +49,39 @@
                                 {{ \Carbon\Carbon::parse($item->created_at)->locale('vi_VN')->format('H:i:s, d-m-Y') }}
                             </td>
 
-                            <td class="px-6 py-4  truncate max-w-[200px]">
-                                <p>
-                                    <span class="font-semibold text-gray-900">{{ __('Tên:') }}</span>
-                                    <a href="{{ route('client.exhibition.details', $item->exhibition->id) }}" class="text-red-500 hover:underline">{{ $item->exhibition->title }}</a>
-                                </p>
-                                <p>
-                                    <span class="font-semibold text-gray-900">{{ __('Bắt đầu:') }}</span>
-                                    <span class="text-green-600">
-                                        {{ \Carbon\Carbon::parse($item->exhibition->start_date)->locale('vi_VN')->format('H:i, d-m-Y') }}
-                                    </span>
-                                </p>
-                                <p>
-                                    <span class="font-semibold text-gray-900">{{ __('Kết thúc:') }}</span>
-                                    <span class="text-green-600">
-                                        {{ \Carbon\Carbon::parse($item->exhibition->end_date)->locale('vi_VN')->format('H:i, d-m-Y') }}
-                                    </span>
-                                </p>
-                            </td>
+                            <td class="px-6 py-4 truncate max-w-[200px]">
+    <p>
+        <span class="font-semibold text-gray-900">{{ __('Name:') }}</span>
+        <a href="{{ route('client.exhibition.details', $item->exhibition->id) }}" class="text-red-500 hover:underline">{{ $item->exhibition->title }}</a>
+    </p>
+    <p>
+        <span class="font-semibold text-gray-900">{{ __('Start:') }}</span>
+        <span class="text-green-600">
+            {{ \Carbon\Carbon::parse($item->exhibition->start_date)->locale('en')->format('H:i, d-m-Y') }}
+        </span>
+    </p>
+    <p>
+        <span class="font-semibold text-gray-900">{{ __('End:') }}</span>
+        <span class="text-green-600">
+            {{ \Carbon\Carbon::parse($item->exhibition->end_date)->locale('en')->format('H:i, d-m-Y') }}
+        </span>
+    </p>
+</td>
+
 
                             <td class="px-6 py-4  text-wrap max-w-[200px]">
                                 {{ $item->details }}
                             </td>
 
                             <td class="px-6 py-4">
-                                <x-ui.badge text="{{ $item->is_paid ? 'Đã thanh toán' : 'Chưa thanh toán' }}"
+                                <x-ui.badge text="{{ $item->is_paid ? 'Paid' : 'Unpaid' }}"
                                     :color="$item->is_paid ? 'green' : 'red'" />
                             </td>
                         </x-ui.table-row>
                     @empty
                         <x-ui.table-row>
                             <td class="px-6 py-4 text-center dark:text-white" colspan="{{ count($columns) }}">
-                                Không có dữ liệu
+                            No data available
                             </td>
                         </x-ui.table-row>
                     @endforelse

@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('Lịch sử xem bài viết') }}
+    {{ __('Post View History') }}
 @endsection
 
 @php
-    $columns = ['Tiêu đề', 'Chuyên mục', 'Tác giả', 'Thời gian xem', 'Lượt xem'];
+    $columns = ['Title', 'Category', 'Author', 'Viewed At', 'View Count'];
 @endphp
 
 @section('content')
@@ -13,7 +13,7 @@
         <x-ui.breadcrumb :is-admin="0" is-dark :breadcrumbs="[['url' => 'client.post.history', 'label' => 'Post View History']]" />
 
         <h1 class="text-2xl text-white capitalize">
-            Danh sách bài viết đã xem
+            List of Viewed Posts
         </h1>
 
         @if (session('success'))
@@ -34,15 +34,15 @@
                             </td>
 
                             <td class="px-6 py-4 text-wrap max-w-[150px]">
-                                {{ $item->post->category->name ?? 'Không có' }}
+                                {{ $item->post->category->name ?? 'No category' }}
                             </td>
 
                             <td class="px-6 py-4">
-                                {{ $item->post->author->name ?? 'Ẩn danh' }}
+                                {{ $item->post->author->name ?? 'Anonymous' }}
                             </td>
 
                             <td class="px-6 py-4">
-                                {{ \Carbon\Carbon::parse($item->viewed_at)->locale('vi_VN')->format('H:i, d-m-Y') }}
+                                {{ \Carbon\Carbon::parse($item->viewed_at)->locale('en')->format('H:i, d-m-Y') }}
                             </td>
 
                             <td class="px-6 py-4">
@@ -52,7 +52,7 @@
                     @empty
                         <x-ui.table-row>
                             <td class="px-6 py-4 text-center dark:text-white" colspan="{{ count($columns) }}">
-                                Không có dữ liệu
+                                No data available
                             </td>
                         </x-ui.table-row>
                     @endforelse
@@ -61,7 +61,7 @@
         </div>
 
         <div class="mt-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow sm:flex sm:items-center sm:justify-between">
-            <x-common.pagination-info :paginator="$views" unit="lượt xem" />
+            <x-common.pagination-info :paginator="$views" unit="views" />
             <x-ui.pagination :paginator="$views" />
         </div>
     </div>

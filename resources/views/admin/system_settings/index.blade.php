@@ -103,31 +103,44 @@
             </div>
 
             <!-- Tab 3: Logo -->
-            <div x-show="tab === 'logo'" class="space-y-6">
-                <div class="space-y-4">
-                    <label for="site_name" class="block text-sm font-medium text-gray-700">Tên Website</label>
-                    <input type="text" name="site_name" id="site_name"
-                        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2"
-                        value="{{ $configurations['site_name']->value ?? '' }}">
-                </div>
+<div x-show="tab === 'logo'" class="space-y-6">
+    <div class="space-y-4">
+        <label for="site_name" class="block text-sm font-medium text-gray-700">Tên Website</label>
+        <input type="text" name="site_name" id="site_name"
+            class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2"
+            value="{{ $configurations['site_name']->value ?? '' }}">
+    </div>
 
-                <div class="space-y-4">
-                    <label for="footer_text" class="block text-sm font-medium text-gray-700">Mô tả footer</label>
-                    <textarea name="footer_text" id="footer_text" rows="3"
-                        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2">{{ $configurations['footer_text']->value ?? '' }}</textarea>
-                </div>
+    <div class="space-y-4">
+        <label for="footer_text" class="block text-sm font-medium text-gray-700">Mô tả footer</label>
+        <textarea name="footer_text" id="footer_text" rows="3"
+            class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2">{{ $configurations['footer_text']->value ?? '' }}</textarea>
+    </div>
 
-                <div class="space-y-4">
-                    <label for="logo" class="block text-sm font-medium text-gray-700">Logo Website</label>
-                    <input type="file" name="logo" id="logo"
-                        class="block w-full text-sm text-gray-700 mt-2">
-                    @if (!empty($configurations['logo']->value))
-                        <div class="mt-4">
-                            <img src="{{ asset('storage/' . $configurations['logo']->value) }}" alt="Logo hiện tại" class="h-16">
-                        </div>
-                    @endif
-                </div>
+    <div class="space-y-4">
+        <label for="logo" class="block text-sm font-medium text-gray-700">Logo Website</label>
+        <input type="file" name="logo" id="logo"
+            class="block w-full text-sm text-gray-700 mt-2">
+        @if (!empty($configurations['logo']->value))
+            <div class="mt-4">
+                <img src="{{ asset('storage/' . $configurations['logo']->value) }}" alt="Logo hiện tại" class="h-16">
             </div>
+        @endif
+    </div>
+
+    <!-- ✅ Thêm phần favicon vào đây -->
+    <div class="space-y-4">
+        <label for="favicon" class="block text-sm font-medium text-gray-700">Favicon</label>
+        <input type="file" name="favicon" id="favicon"
+            class="block w-full text-sm text-gray-700 mt-2" accept=".ico,.png,.jpg,.jpeg,.svg">
+        @if (!empty($configurations['favicon']->value))
+            <div class="mt-4">
+                <img src="{{ asset('storage/' . $configurations['favicon']->value) }}" alt="Favicon hiện tại" class="h-8 w-8">
+            </div>
+        @endif
+    </div>
+</div>
+
 
             <!-- Nút lưu -->
             <div class="pt-6">

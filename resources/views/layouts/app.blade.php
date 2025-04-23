@@ -4,27 +4,36 @@
 <script src="//unpkg.com/alpinejs" defer></script>
 
 <head>
+    <script src="//unpkg.com/alpinejs" defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    
+    {{-- === Bước 4: Hiển thị favicon === --}}
+    @php
+        // Lấy đường dẫn favicon từ cấu hình, trả về null nếu chưa có
+        $favicon = get_system_config('favicon');
+    @endphp
+
+    @if($favicon)
+        {{-- Nếu admin đã upload favicon, dùng đường dẫn đó --}}
+        <link rel="icon" href="{{ asset('storage/' . $favicon) }}" type="image/x-icon">
+    @else
+        {{-- Ngược lại dùng file mặc định nằm ở public/favicon.ico --}}
+        <link rel="icon" href="{{ asset('favicon.ico') }}" type="image/x-icon">
+    @endif
+    {{-- ================================== --}}
 
     <title>@yield('title') - {{ config('app.name', 'Museum') }}</title>
 
-    <!-- Fonts -->
-<!-- Swiper CSS -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-
+    <!-- Fonts & Styles & Scripts như bạn đang có -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.googleapis.com/css?family=Baskervville:400|Bellefair:400|Poppins:300,400|Roboto:300,500"
         rel="stylesheet">
-
     @vite(['resources/css/app.css', 'resources/js/app.js'])
-
     <style>
         .bg-gradient-hero {
             background: linear-gradient(32deg, rgba(17, 17, 17, 1) 0%, rgba(0, 0, 0, 0) 100%);
@@ -116,7 +125,11 @@
                         Post View History
                         </a>
                     </li>
-                    
+                    <li>
+                        <a href="{{ route('client.user.setting') }}" class="block px-4 py-2 hover:bg-gray-100">
+                        Account Settings
+                        </a>
+                    </li>
                     @if (Auth::user()->is_admin)
                         <li>
                             <a href="{{ route('admin.post') }}" class="block px-4 py-2 hover:bg-gray-100">

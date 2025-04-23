@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('Trang chủ') }}
+    {{ __('Home') }}
 @endsection
 
 @section('content')
@@ -117,17 +117,17 @@
                                 <div class="relative w-4 h-4 top-1 left-1 bg-neutral-100 rounded-[7.98px]"></div>
                             </div>
                             <h3 class="font-bellefair font-normal text-white text-[29.2px] tracking-[0] leading-[normal]">
-                                HỒN NGỌC THỜI GIAN
+                            THE SOUL OF TIME
                             </h3>
                         </div>
 
                         <div class="font-poppins font-normal text-white text-[12.5px] tracking-[0] leading-[normal]">
-                            BẮT ĐẦU : 15 - 20 tháng 6, 2025 .
+                        START: June 15 - 20, 2025.
                         </div>
 
                         <p
                             class="w-[629px] text-[15.9px] tracking-[1.03px] leading-[normal] font-poppins font-light text-white">
-                            Triển lãm Hồn Ngọc Thời Gian mang đến một hành trình khám phá những kiệt tác trang sức cổ Việt Nam qua các triều đại.
+                            The exhibition Soul of Time Jewels offers a journey to discover ancient Vietnamese jewelry masterpieces through the dynasties.
                         </p>
                     </div>
                 </div>
@@ -197,8 +197,8 @@
         <!-- Exhibition 1 -->
         <div class="group bg-[#2f2f2f] hover:bg-white transition duration-300 flex flex-col md:flex-row overflow-hidden">
             <div class="p-6 flex-1">
-                <h3 class="text-2xl font-bold mb-2 text-white group-hover:text-black transition">Vẻ Đẹp Hoàng Cung</h3>
-                <p class="text-gray-300 mb-8 group-hover:text-black transition">Trang Sức Cổ Việt Nam</p>
+                <h3 class="text-2xl font-bold mb-2 text-white group-hover:text-black transition">Royal Beauty</h3>
+                <p class="text-gray-300 mb-8 group-hover:text-black transition">Vietnamese Antique Jewelry</p>
                 <div class="text-sm mt-auto text-white group-hover:text-black transition">
                     <p class="font-semibold">Start on</p>
                     <p>15 – 17 May 2025</p>
@@ -212,8 +212,8 @@
         <!-- Exhibition 2 -->
         <div class="group bg-[#2f2f2f] hover:bg-yellow-400 transition duration-300 flex flex-col md:flex-row overflow-hidden">
             <div class="p-6 flex-1">
-                <h3 class="text-2xl font-bold mb-2 group-hover:text-black transition">Tinh Hoa Chế Tác</h3>
-                <p class="text-yellow-400 mb-8 font-semibold group-hover:text-black transition">Nghệ Nhân Và Di Sản</p>
+                <h3 class="text-2xl font-bold mb-2 group-hover:text-black transition">Craftsmanship</h3>
+                <p class="text-yellow-400 mb-8 font-semibold group-hover:text-black transition">Artisans and Heritage</p>
                 <div class="text-sm mt-auto group-hover:text-black transition">
                     <p class="font-semibold">Start on</p>
                     <p>27 – 30 May 2025</p>
@@ -254,12 +254,12 @@
 
         <div class="absolute bottom-8 left-8 text-white z-10">
     <h2 class="text-5xl font-serif font-semibold tracking-wide">
-        Bộ sưu tập nổi bật
+    Featured Collection
     </h2>
-    <p class="text-lg mt-2 text-gray-300 w-[80%]">Nơi lưu giữ vẻ đẹp cổ truyền dân tộc Việt Nam qua từng món trang sức.</p>
+    <p class="text-lg mt-2 text-gray-300 w-[80%]">A place to preserve the traditional beauty of Vietnam through each piece of jewelry.</p>
     <a href="{{ route('client.collection') }}"
         class="mt-4 inline-block px-6 py-3 bg-white text-black font-semibold rounded-full hover:bg-gray-100 transition">
-        Khám phá ngay
+        Explore Now
     </a>
 </div>
 
@@ -275,8 +275,8 @@
                 alt="Item 3"
                 class="w-32 h-32 object-cover rounded-lg shadow-md">
             <div>
-                <h3 class="text-xl font-bold text-white">Vòng Ngọc Bích Hoàng Gia</h3>
-                <p class="text-gray-400 mt-1 text-sm">Biểu tượng của sự may mắn và trường thọ trong văn hóa phương Đông.</p>
+                <h3 class="text-xl font-bold text-white">Royal Jade Bracelet</h3>
+                <p class="text-gray-400 mt-1 text-sm">Symbol of luck and longevity in Eastern culture.</p>
             </div>
         </div>
 
@@ -285,8 +285,8 @@
                 alt="Item 2"
                 class="w-32 h-32 object-cover rounded-lg shadow-md">
             <div>
-                <h3 class="text-xl font-bold text-white">Lắc Chân Bạc Trống Đồng</h3>
-                <p class="text-gray-400 mt-1 text-sm">Hoa văn trống đồng tượng trưng cho sự thịnh vượng, hưng thịnh và vững vàng trong cuộc sống.</p>
+                <h3 class="text-xl font-bold text-white">Bronze Drum Silver Anklets</h3>
+                <p class="text-gray-400 mt-1 text-sm">Bronze drum patterns symbolize prosperity, prosperity and stability in life.</p>
             </div>
         </div>
 
@@ -295,8 +295,8 @@
                 alt="Item 1"
                 class="w-32 h-32 object-cover rounded-lg shadow-md">
             <div>
-                <h3 class="text-xl font-bold text-white">Trâm Cài Lá Đa</h3>
-                <p class="text-gray-400 mt-1 text-sm">Món trang sức truyền thống của Việt Nam, thường được chế tác từ vàng, bạc hoặc đồng, mang hình dáng chiếc lá đa mềm mại.</p>
+                <h3 class="text-xl font-bold text-white">Multi Leaf Brooch</h3>
+                <p class="text-gray-400 mt-1 text-sm">Traditional Vietnamese jewelry, often crafted from gold, silver or bronze, features the shape of a soft banyan leaf.</p>
             </div>
         </div>
     </div>

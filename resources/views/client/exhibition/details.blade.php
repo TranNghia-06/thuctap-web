@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('Chi tiết buổi triển lãm') }}
+    {{ __('Exhibition details') }}
 @endsection
 
 @section('content')
@@ -25,32 +25,32 @@
 
                 <div class="space-y-3 text-base text-gray-700">
                     <div>
-                        <h2 class="font-semibold text-lg text-gray-900 mb-1">📝 Mô tả</h2>
+                        <h2 class="font-semibold text-lg text-gray-900 mb-1">📝 Descriptions</h2>
                         <p>{{ $data->description }}</p>
                     </div>
 
                     <div class="grid grid-cols-2 gap-4">
                         <div>
-                            <h2 class="font-semibold text-lg text-gray-900 mb-1">📅 Bắt đầu</h2>
+                            <h2 class="font-semibold text-lg text-gray-900 mb-1">📅 Start time</h2>
                             <p>{{ $data->formatted_start_date }}</p>
                         </div>
                         <div>
-                            <h2 class="font-semibold text-lg text-gray-900 mb-1">📆 Kết thúc</h2>
+                            <h2 class="font-semibold text-lg text-gray-900 mb-1">📆 End time</h2>
                             <p>{{ $data->formatted_end_date }}</p>
                         </div>
                     </div>
 
                     <div>
-                        <h2 class="font-semibold text-lg text-gray-900 mb-1">🎟️ Vé còn lại</h2>
+                        <h2 class="font-semibold text-lg text-gray-900 mb-1">🎟️ Tickets remaining</h2>
                         <x-ui.badge type="green" :text="$data->is_limited_tickets ? $data->available_tickets : 'Không giới hạn'" />
                     </div>
 
                     @if ($data->is_expired)
-                        <span class="text-red-600 font-medium">⛔ Buổi triển lãm đã kết thúc</span>
+                        <span class="text-red-600 font-medium">⛔ The exhibition has ended.</span>
                     @else
                         <a href="{{ route('client.exhibition.booking', $data->id) }}"
                            class="mt-5 inline-block w-max px-5 py-2.5 text-sm font-semibold text-white bg-green-600 rounded-lg shadow hover:bg-green-700 transition">
-                            Đặt vé ngay
+                           Book now
                         </a>
                     @endif
                 </div>
