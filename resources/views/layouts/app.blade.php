@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-<script src="//unpkg.com/alpinejs" defer></script>
 
 <head>
     <script src="//unpkg.com/alpinejs" defer></script>
@@ -38,6 +37,28 @@
         .bg-gradient-hero {
             background: linear-gradient(32deg, rgba(17, 17, 17, 1) 0%, rgba(0, 0, 0, 0) 100%);
         }
+
+
+/* Ẩn logo Google Translate */
+.goog-te-gadget-icon,
+.goog-logo-link {
+  display: none !important;
+}
+
+/* Đẩy text/mũi tên sát sang trái cho gọn */
+.goog-te-gadget-simple {
+  padding-left: 0 !important;
+}
+.goog-te-gadget-simple .goog-te-menu-value {
+  display: inline-block !important;
+  vertical-align: middle;
+}
+.goog-te-gadget-simple {
+  line-height: 1.5;
+}
+
+
+
     </style>
 </head>
 @php
@@ -148,21 +169,17 @@
         </div>
     @endguest
 
-    <div class="flex gap-2">
-    <!-- Chuyển sang tiếng Việt -->
-    <form method="get" action="{{ route('lang.switch', ['locale' => 'vi']) }}">
-        <button type="submit" class="flex items-center">
-            <img src="{{ asset('storage/images/covietnam.jpg') }}" alt="Vietnam Flag" class="w-6 h-4 border {{ app()->getLocale() === 'vi' ? 'border-indigo-500' : 'border-transparent' }}">
-        </button>
-    </form>
-
-    <!-- Chuyển sang tiếng Anh -->
-    <form method="get" action="{{ route('lang.switch', ['locale' => 'en']) }}">
-        <button type="submit" class="flex items-center">
-            <img src="{{ asset('storage/images/coanhquoc.jpg') }}" alt="UK Flag" class="w-6 h-4 border {{ app()->getLocale() === 'en' ? 'border-indigo-500' : 'border-transparent' }}">
-        </button>
-    </form>
-</div>
+    <div id="google_translate_element"></div>
+<script>
+  function loadGoogleTranslate() {
+    new google.translate.TranslateElement({
+      pageLanguage: 'en', // Ngôn ngữ mặc định của trang
+      includedLanguages: 'en,vi,fr,es,ja,zh', // Các ngôn ngữ hỗ trợ
+      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+    }, 'google_translate_element');
+  }
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script> 
 
 </nav>
         @yield('content')
@@ -305,7 +322,10 @@
     <script src="https://cdn.jsdelivr.net/npm/flowbite@3.1.2/dist/flowbite.min.js"></script>
 </body>
 
+
 </html>
+
+
 
 
 
