@@ -39,27 +39,55 @@
         }
 
 
-/* Ẩn logo Google Translate */
-.goog-te-gadget-icon,
-.goog-logo-link {
-  display: none !important;
-}
-
-/* Đẩy text/mũi tên sát sang trái cho gọn */
-.goog-te-gadget-simple {
-  padding-left: 0 !important;
-}
-.goog-te-gadget-simple .goog-te-menu-value {
-  display: inline-block !important;
-  vertical-align: middle;
-}
-.goog-te-gadget-simple {
-  line-height: 1.5;
-}
-
-
+ /* Ẩn iframe banner */
+ iframe.goog-te-banner-frame {
+          display: none !important;
+        }
+    
+        /* Ẩn thanh trắng bị chèn vào body */
+        body > .skiptranslate {
+          display: none !important;
+        }
+    
+        /* Fix layout không bị đẩy xuống */
+        body {
+          top: 0px !important;
+          position: static !important;
+        }
+    
+        /* Tùy chỉnh dropdown */
+        .custom-translate select {
+          padding: 6px 12px;
+          border-radius: 5px;
+          background-color: #f0f0f0;
+          border: 1px solid #ccc;
+          font-size: 14px;
+          color: #333;
+        }
+    
+        /* Ẩn phần gốc Google Translate */
+        #google_translate_element {
+          display: none !important;
+        }
+    
+        /* Ẩn logo và link Google (nếu bị chèn) */
+        .goog-logo-link,
+        .goog-te-gadget span {
+          display: none !important;
+        }
 
     </style>
+<!-- Google Translate -->
+<script type="text/javascript">
+        function googleTranslateElementInit() {
+          new google.translate.TranslateElement({
+            pageLanguage: 'vi',
+            autoDisplay: false
+          }, 'google_translate_element');
+        }
+      </script>
+      <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+    
 </head>
 @php
     // Lấy tên website từ cấu hình, mặc định "Chưa có tên Website"
@@ -169,17 +197,40 @@
         </div>
     @endguest
 
-    <div id="google_translate_element"></div>
-<script>
-  function loadGoogleTranslate() {
-    new google.translate.TranslateElement({
-      pageLanguage: 'en', // Ngôn ngữ mặc định của trang
-      includedLanguages: 'en,vi,fr,es,ja,zh', // Các ngôn ngữ hỗ trợ
-      layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-    }, 'google_translate_element');
-  }
-</script>
-<script src="https://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script> 
+     <!-- Google Translate hidden container -->
+     <div id="google_translate_element"></div>
+    
+    <!-- Custom dropdown -->
+    <div class="custom-translate">
+      <select onchange="doGTranslate(this)">
+          <option value="">🌐 Language</option>
+          <option value="vi|vi">🇻🇳 Tiếng Việt</option>
+          <option value="vi|en">🇬🇧 English</option>
+          <option value="vi|ja">🇯🇵 Japanese</option>
+          <option value="vi|zh-CN">🇨🇳 Chinese</option>
+          <option value="vi|fr">🇫🇷 French</option>
+          <option value="vi|de">🇩🇪 German</option>
+          <option value="vi|es">🇪🇸 Spanish</option>
+          <option value="vi|ko">🇰🇷 Korean</option>
+          <option value="vi|th">🇹🇭 Thai</option>
+        </select>
+    </div>
+  
+    <script>
+      function doGTranslate(lang_pair) {
+        if (lang_pair.value) {
+          var lang = lang_pair.value.split('|')[1];
+          var interval = setInterval(function () {
+            var select = document.querySelector('.goog-te-combo');
+            if (select) {
+              select.value = lang;
+              select.dispatchEvent(new Event('change'));
+              clearInterval(interval);
+            }
+          }, 100); // Đợi iframe load xong
+        }
+      }
+    </script>    
 
 </nav>
         @yield('content')
