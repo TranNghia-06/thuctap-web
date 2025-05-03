@@ -1,13 +1,13 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    {{ __('Thêm ảnh') }}
+    {{ __('Add Photo') }}
 @endsection
 
 @section('content')
-    <x-ui.breadcrumb :breadcrumbs="[
-        ['url' => 'admin.photo', 'label' => 'Quản lý ảnh'],
-        ['url' => 'admin.photo.create', 'label' => 'Thêm ảnh'],
+    <x-ui.breadcrumb :breadcrumbs="[ 
+        ['url' => 'admin.photo', 'label' => 'Manage Photos'],
+        ['url' => 'admin.photo.create', 'label' => 'Add Photo'],
     ]" />
 
     <form class="space-y-4 md:space-y-6 mt-8" action="{{ route('admin.photo.store') }}" method="POST" enctype="multipart/form-data">
@@ -21,7 +21,7 @@
 
         <div>
             <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                {{ __('Tải ảnh lên') }}
+                {{ __('Upload Image') }}
             </label>
             <input type="file" name="image" id="image" accept="image/*" required class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
             @error('image')
@@ -30,7 +30,7 @@
         </div>
 
         <x-ui.button type="submit" class="w-full md:w-auto">
-            {{ __('Thêm ảnh') }}
+            {{ __('Add Photo') }}
         </x-ui.button>
     </form>
 @endsection

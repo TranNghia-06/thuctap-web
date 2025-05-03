@@ -1,15 +1,15 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    {{ __('Collections') }}
+    {{ __('Shop') }}
 @endsection
 
 @php
     $columns = [
         'Image',
-        'Collection Name',
+        'Product Name',
         'Short Description',
-        'Type',
+        'Category',
         'Price',
         'Quantity',
         'Created At',
@@ -19,11 +19,10 @@
 @endphp
 
 @section('content')
-    <x-ui.breadcrumb :breadcrumbs="[['url' => 'admin.user', 'label' => 'Collections']]" />
+    <x-ui.breadcrumb :breadcrumbs="[['url' => 'admin.user', 'label' => 'Shop']]" />
 
-    <!-- Start coding here -->
-    <x-common.section-action title="Collections" description="List of collections in the system">
-        <x-ui.button :href="route('admin.collection.create')">
+    <x-common.section-action title="Shop" description="Product List">
+        <x-ui.button :href="route('admin.shop.create')">
             <x-slot:icon>
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5 mr-2 -ml-1" viewBox="0 0 20 20" fill="currentColor"
                     aria-hidden="true">
@@ -31,8 +30,7 @@
                         d="M8 9a3 3 0 100-6 3 3 0 000 6zM8 11a6 6 0 016 6H2a6 6 0 016-6zM16 7a1 1 0 10-2 0v1h-1a1 1 0 100 2h1v1a1 1 0 102 0v-1h1a1 1 0 100-2h-1V7z" />
                 </svg>
             </x-slot>
-
-            <span>Add Collection</span>
+            <span>Add Product</span>
         </x-ui.button>
     </x-common.section-action>
 
@@ -80,13 +78,13 @@
                     </td>
 
                     <td class="px-6 py-4 text-nowrap">
-                        <a href="{{ route('admin.collection.edit', $item->id) }}"
-                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline {{ $item->role == 'admin' ? 'hidden' : '' }}">
+                        <a href="{{ route('admin.shop.edit', $item->id) }}"
+                            class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                             {{ __('Edit') }}
                         </a>
 
-                        <a href="{{ route('admin.collection.delete', $item->id) }}"
-                            class="font-medium text-red-600 dark:text-red-500 hover:underline ml-4 {{ $item->role == 'admin' ? 'hidden' : '' }}">
+                        <a href="{{ route('admin.shop.delete', $item->id) }}"
+                            class="font-medium text-red-600 dark:text-red-500 hover:underline ml-4">
                             {{ __('Delete') }}
                         </a>
                     </td>
@@ -102,7 +100,7 @@
     </x-ui.table>
 
     <div class="mt-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow sm:flex sm:items-center sm:justify-between">
-        <x-common.pagination-info :paginator="$data" unit="collections" />
+        <x-common.pagination-info :paginator="$data" unit="shops" />
         <x-ui.pagination :paginator="$data" />
     </div>
 @endsection

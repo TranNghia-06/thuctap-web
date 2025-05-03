@@ -10,6 +10,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SystemSettingController;
 use App\Http\Controllers\ImageController;
 use App\Http\Middleware\IsAdmin;
+use App\Http\Controllers\MuseumTicketController;
+use App\Http\Controllers\ShopController;
 
 use Illuminate\Support\Facades\Route; 
 use Illuminate\Support\Facades\Auth; // Hỗ trợ xác thực đăng nhập/đăng xuất
@@ -21,6 +23,7 @@ use App\Http\Controllers\Client\PostController as ClientPostController;
 use App\Http\Controllers\Client\CartController as ClientCartController;
 use App\Http\Controllers\Client\OrderController as ClientOrderController;
 use App\Http\Controllers\Client\UserController as ClientUserController;
+use App\Http\Controllers\Client\ShopController as ClientShopController;
 
 // Xác thực người dùng
 Auth::routes();
@@ -33,6 +36,12 @@ Route::prefix('collection')->group(function () {
   Route::get('/{id}', [ClientCollectionController::class, 'details'])->name('client.collection.details');
 });
 
+
+// Nhóm route dành cho Bộ sưu tập (SHOP) của khách hàng
+Route::prefix('shop')->group(function () {
+  Route::get('/', [ClientShopController::class, 'index'])->name('client.shop');
+  Route::get('/{id}', [ClientShopController::class, 'details'])->name('client.shop.details');
+});
 
 
 // Nhóm route dành cho Bài viết (Post) của khách hàng
@@ -67,6 +76,7 @@ Route::prefix('cart')->group(function () {
 
 
 
+
 // Nhóm route dành cho Đơn hàng (Order), yêu cầu đăng nhập
 Route::middleware('auth')->prefix('order')->group(function () {
   Route::get('/history', [ClientOrderController::class, 'history'])->name('order.history');
@@ -81,6 +91,7 @@ Route::middleware('auth')->prefix('user')->group(function () {
     Route::get('/setting', [ClientUserController::class, 'setting'])->name('client.user.setting');
     Route::post('/setting', [ClientUserController::class, 'updateSetting'])->name('client.user.setting');
 });
+
 
 
 // Nhóm route dành cho Quản trị viên (Admin), yêu cầu đăng nhập và quyền admin
@@ -187,11 +198,30 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
   });
 
 
+// Quản lý shop
+Route::prefix('shop')->group(function () {
+  Route::get('/', [ShopController::class, 'index'])->name('admin.shop');
+  Route::get('/create', [ShopController::class, 'showCreate'])->name('admin.shop.create');
+  Route::post('/create', [ShopController::class, 'create'])->name('admin.shop.create');
+
+  Route::get('/edit/{id}', [ShopController::class, 'showEdit'])->name('admin.shop.edit');
+  Route::post('/edit/{id}', [ShopController::class, 'update'])->name('admin.shop.edit');
+
+  Route::get('/delete/{id}', [ShopController::class, 'showDelete'])->name('admin.shop.delete');
+  Route::post('/delete/{id}', [ShopController::class, 'delete'])->name('admin.shop.delete');
+});
+
+
+
+
   // Quản lý cấu hình
   Route::prefix('settings')->group(function () {
     Route::get('/', [SystemSettingController::class, 'index'])->name('admin.system_settings');
     Route::post('/', [SystemSettingController::class, 'update'])->name('admin.system_settings.update');
   });
+
+
+
 
 //image
   Route::get('/photo', [ImageController::class, 'index'])->name('admin.photo');
@@ -203,12 +233,7 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
   
 });
 
-// chuyển đổi ngôn ngữ 
-Route::get('lang/{locale}', function ($locale) {
-  if (in_array($locale, ['en', 'vi'])) {
-      session()->put('locale', $locale);
-  }
-  return redirect()->back();
-})->name('lang.switch');
+
+
 
 

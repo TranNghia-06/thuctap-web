@@ -49,10 +49,10 @@
                                     @endphp
                                     <tr>
                                         <td class="px-4 py-4 flex items-center gap-4">
-                                            <a href="{{ route('client.collection.details', $id) }}" class="w-12 h-12 flex-shrink-0">
+                                            <a href="{{ route('client.shop.details', $id) }}" class="w-12 h-12 flex-shrink-0">
                                                 <img src="{{ asset('storage/' . $item['thumbnail']) }}" class="rounded-md w-full h-full object-cover" alt="{{ $item['name'] }}">
                                             </a>
-                                            <a href="{{ route('client.collection.details', $id) }}" class="hover:underline">
+                                            <a href="{{ route('client.shop.details', $id) }}" class="hover:underline">
                                                 {{ $item['name'] }}
                                             </a>
                                         </td>
@@ -101,7 +101,7 @@
 
                     <!-- Action Buttons -->
                     <div class="flex flex-col sm:flex-row sm:justify-between gap-4 pt-6">
-                        <a href="{{ route('client.collection') }}"
+                        <a href="{{ route('client.shop') }}"
                             class="w-full text-center rounded-lg border border-gray-300 bg-white px-5 py-3 text-sm font-medium text-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-gray-300 dark:hover:bg-gray-700">
                             {{ __('Back') }}
                         </a>

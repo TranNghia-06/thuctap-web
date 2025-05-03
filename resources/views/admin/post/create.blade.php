@@ -1,13 +1,13 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    {{ __('Thêm bài viết') }}
+    {{ __('Add Post') }}
 @endsection
 
 @section('content')
-    <x-ui.breadcrumb :breadcrumbs="[
-        ['url' => 'admin.post', 'label' => 'Quản lý bài viết'],
-        ['url' => 'admin.post.create', 'label' => 'Thêm bài viết'],
+    <x-ui.breadcrumb :breadcrumbs="[ 
+        ['url' => 'admin.post', 'label' => 'Manage Posts'],
+        ['url' => 'admin.post.create', 'label' => 'Add Post'],
     ]" />
 
     <form class="space-y-4 md:space-y-6 mt-8" action="{{ route('admin.post.create') }}" method="POST"
@@ -20,20 +20,19 @@
             </x-ui.alert>
         @endif
 
-        <x-form.input-field name="title" label="Tiêu đề bài viết" :value="old('title')" required
-            placeholder="VD: Triển lãm nghệ thuật" />
+        <x-form.input-field name="title" label="Post Title" :value="old('title')" required
+            placeholder="e.g., Art Exhibition" />
 
         <div>
             <label for="status" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                {{ __('Trạng thái') }}
+                {{ __('Status') }}
             </label>
             <select required id="status" name="status"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                 @if (old('status'))
-                    <option value="active" {{ old('status') === 'active' ? 'selected' : '' }}>{{ __('Hiển thị') }}</option>
-                    </option>
+                    <option value="active" {{ old('status') === 'active' ? 'selected' : '' }}>{{ __('Visible') }}</option>
                 @else
-                    <option value="active">{{ __('Hiển thị') }}</option>
+                    <option value="active">{{ __('Visible') }}</option>
                 @endif
             </select>
             @error('status')
@@ -41,8 +40,8 @@
             @enderror
         </div>
 
-        <x-form.textarea-field name="content" label="Nội dung bài viết" :value="old('content')" required
-            placeholder="Nhập nội dung bài viết" />
+        <x-form.textarea-field name="content" label="Post Content" :value="old('content')" required
+            placeholder="Enter post content" />
 
         <!-- Hidden inputs for CKEditor -->
         <input type="hidden" id="content_html" name="content_html" value="{{ old('content_html') }}">
@@ -51,12 +50,12 @@
         <!-- Thumbnail Section -->
         <div>
             <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                {{ __('Ảnh đại diện bài viết') }}
+                {{ __('Post Thumbnail') }}
             </label>
 
             <!-- Option to Upload New Image -->
             <div class="mb-4">
-                <label for="thumbnail" class="block mb-1 text-sm text-gray-400">{{ __('Tải ảnh mới') }}</label>
+                <label for="thumbnail" class="block mb-1 text-sm text-gray-400">{{ __('Upload New Image') }}</label>
                 <input type="file" name="thumbnail" id="thumbnail" accept="image/*" onchange="previewAvatar(event)"
                     class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
                 @error('thumbnail')
@@ -67,10 +66,10 @@
 
             <!-- Option to Select Existing Image -->
             <div>
-                <label class="block mb-1 text-sm text-gray-400">{{ __('Chọn ảnh hiện có') }}</label>
+                <label class="block mb-1 text-sm text-gray-400">{{ __('Select Existing Image') }}</label>
                 <button type="button" onclick="openImageModal()"
                     class="bg-gray-500 hover:bg-gray-600 text-white text-sm font-medium rounded-lg px-4 py-2">
-                    {{ __('Chọn từ thư viện ảnh') }}
+                    {{ __('Select from Image Library') }}
                 </button>
                 <input type="hidden" name="thumbnail_id" id="thumbnail_id" value="{{ old('thumbnail_id') }}">
                 <div id="selectedImagePreview" class="mt-2 hidden">
@@ -80,15 +79,15 @@
         </div>
 
         <x-ui.button type="submit" class="w-full md:w-auto bg-blue-500 hover:bg-blue-600">
-            {{ __('Thêm bài viết') }}
+            {{ __('Add Post') }}
         </x-ui.button>
     </form>
 
     <!-- Modal for Image Selection -->
     <div id="imageModal" class="fixed inset-0 bg-white bg-opacity-50 flex items-center justify-center hidden">
-    <div class="bg-white rounded-lg shadow-lg w-full max-w-4xl p-6 max-h-[80vh] overflow-y-auto">
+        <div class="bg-white rounded-lg shadow-lg w-full max-w-4xl p-6 max-h-[80vh] overflow-y-auto">
             <div class="flex justify-between items-center mb-4">
-                <h3 class="text-lg font-medium text-black">{{ __('Chọn ảnh') }}</h3>
+                <h3 class="text-lg font-medium text-black">{{ __('Select Image') }}</h3>
                 <button onclick="closeImageModal()" class="text-gray-400 hover:text-white">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
@@ -102,7 +101,7 @@
                             alt="Image">
                     </div>
                 @empty
-                    <p class="text-gray-400 col-span-full text-center">{{ __('Không có ảnh nào') }}</p>
+                    <p class="text-gray-400 col-span-full text-center">{{ __('No images available') }}</p>
                 @endforelse
             </div>
         </div>

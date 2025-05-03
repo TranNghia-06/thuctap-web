@@ -34,7 +34,7 @@
                     @forelse ($data as $id => $item)
                         <x-ui.table-row>
                             <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                <a href="{{ route('client.collection.details', $id) }}"
+                                <a href="{{ route('client.shop.details', $id) }}"
                                     class="font-medium text-blue-600 dark:text-blue-500 hover:underline">
                                     {{ $item['name'] }}
                                 </a>
@@ -66,7 +66,7 @@
                                     {{ __('Your cart is empty') }}
                                 </span>
 
-                                <a href="{{ route('client.collection') }}">
+                                <a href="{{ route('client.shop') }}">
                                     <span class="text-blue-600 dark:text-blue-500 hover:underline ml-4">
                                         {{ __('Continue shopping') }}
                                     </span>
@@ -81,7 +81,7 @@
         @if (count($data) > 0)
             <div class="mt-4 flex justify-end">
                 <div>
-                    <x-ui.button href="{{ route('client.collection') }}" class="!bg-green-500">
+                    <x-ui.button href="{{ route('client.shop') }}" class="!bg-green-500">
                         {{ __('Go back') }}
                     </x-ui.button>
                 </div>

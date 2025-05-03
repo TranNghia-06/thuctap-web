@@ -1,25 +1,25 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    {{ __('Quản lý ảnh') }}
+    {{ __('Manage Photos') }}
 @endsection
 
 @php
-    $columns = ['Ảnh', 'Link', 'Thời gian tạo', 'Hành động'];
+    $columns = ['Photo', 'Link', 'Created At', 'Actions'];
 @endphp
 
 @section('content')
-    <x-ui.breadcrumb :breadcrumbs="[
-        ['url' => 'admin.photo', 'label' => 'Quản lý ảnh'],
+    <x-ui.breadcrumb :breadcrumbs="[ 
+        ['url' => 'admin.photo', 'label' => 'Manage Photos'],
     ]" />
 
-    <!-- Form Upload Ảnh -->
+    <!-- Upload Photo Form -->
     <div class="mb-8">
         <form class="space-y-4 md:space-y-6" action="{{ route('admin.photo.store') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <div>
                 <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    {{ __('Tải ảnh lên') }}
+                    {{ __('Upload Photo') }}
                 </label>
                 <input type="file" name="image" id="image" accept="image/*" required class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
                 @error('image')
@@ -27,12 +27,12 @@
                 @enderror
             </div>
             <x-ui.button type="submit" class="bg-blue-500 hover:bg-blue-600">
-                {{ __('Tải lên') }}
+                {{ __('Upload') }}
             </x-ui.button>
         </form>
     </div>
 
-    <!-- Danh sách ảnh -->
+    <!-- Photo List -->
     <x-ui.table :columns="$columns">
         <x-slot:body>
             @forelse ($images as $image)
@@ -51,27 +51,27 @@
                     </td>
                     <td class="px-6 py-4 text-nowrap">
                         <a href="#" onclick="event.preventDefault(); document.getElementById('delete-image-{{ $image->id }}').submit();" class="font-medium text-red-600 dark:text-red-500 hover:underline">
-                            {{ __('Xóa') }}
+                            {{ __('Delete') }}
                         </a>
                         <form id="delete-image-{{ $image->id }}" action="{{ route('admin.photo.delete', $image->id) }}" method="POST" style="display: none;">
                             @csrf
                             @method('DELETE')
-</form>
+                        </form>
                     </td>
                 </x-ui.table-row>
             @empty
                 <x-ui.table-row>
                     <td class="px-6 py-4 text-center dark:text-white" colspan="{{ count($columns) }}">
-                        Không có ảnh nào
+                        No images available
                     </td>
                 </x-ui.table-row>
             @endforelse
         </x-slot:body>
     </x-ui.table>
 
-    <!-- Phân trang -->
+    <!-- Pagination -->
     <div class="mt-4 bg-white dark:bg-gray-800 p-4 rounded-lg shadow sm:flex sm:items-center sm:justify-between">
-        <x-common.pagination-info :paginator="$images" unit="ảnh" />
+        <x-common.pagination-info :paginator="$images" unit="photo" />
         <x-ui.pagination :paginator="$images" />
     </div>
 @endsection
@@ -81,6 +81,6 @@
         const input = document.getElementById(inputId);
         input.select();
         document.execCommand('copy');
-        alert('Đã sao chép link ảnh: ' + input.value);
+        alert('Copied image link: ' + input.value);
     }
 </script>

@@ -5,60 +5,50 @@
 @endsection
 
 @section('content')
-    <!-- Hero Section -->
-    <section class="relative w-[1760px] h-[2579px] -left-[160px]">
-        <div
-            class="absolute w-[1378px] h-[1378px] top-[133px] left-[382px] rounded-[689.07px] border-[17px] border-solid border-white blur-[10px]">
+ <!-- Hero Section -->
+<section class="relative w-full min-h-[100vh] sm:min-h-[800px] bg-[#0d0d0d] overflow-hidden">
+    <!-- Background Image with Parallax -->
+    <div class="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0"
+         style="background-image: url('{{ asset('storage/images/tour2.jpg') }}');"
+         x-data="{ offset: 0 }"
+         x-init="window.addEventListener('scroll', () => offset = window.scrollY / 5)"
+         :style="{ transform: `translateY(${offset}px)` }">
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-r from-[#4a2c2a]/70 via-transparent to-[#4a2c2a]/70 z-10"></div>
+    </div>
+
+    <!-- Content Container -->
+    <div class="relative w-full max-w-[1440px] mx-auto px-4 sm:px-8 flex items-center justify-center min-h-[100vh] sm:min-h-[800px] z-20">
+        <div class="bg-white/90 p-6 sm:p-8 rounded-lg shadow-lg text-center space-y-4 animate-fade-in">
+            <h1 class="font-bellefair font-normal text-[#4a2c2a] text-3xl sm:text-5xl md:text-6xl tracking-tight leading-tight">
+                Welcome to the Vietnam Antique Jewelry Museum
+            </h1>
+            <p class="font-poppins font-light text-[#4a2c2a] text-base sm:text-lg tracking-wide leading-relaxed max-w-[90%] sm:max-w-[500px] mx-auto">
+                Discover the timeless beauty of ancient Vietnamese jewelry, where history and artistry intertwine in every precious piece.
+            </p>
+            
         </div>
-        <div
-            class="absolute w-[1378px] h-[1378px] top-[133px] left-[382px] rounded-[689.07px] border-[17px] border-solid border-white">
-        </div>
+    </div>
 
-        <img class="w-[1440px] h-[1418px] absolute top-0 left-[160px] object-cover" alt="Museum hero image"
-            src="{{ asset('storage/images/tour2.jpg') }}">
-
-        <div class="absolute w-[1630px] h-[425px] top-[1087px] left-0 bg-[#0d0d0d]"></div>
-
-
-
-        <div class="absolute w-[1640px] h-[252px] top-[243px] left-[160px] bg-gradient-hero"></div>
-
-        <div
-            class="absolute w-[853px] h-[853px] top-[1309px] left-[457px] rounded-[426.43px] border-[10px] border-solid border-white blur-[15px]">
-        </div>
-
-        <div
-            class="absolute w-[853px] h-[853px] top-[1309px] left-[457px] rounded-[426.43px] border-[10px] border-solid border-[#ffffffbd]">
-        </div>
-
-        <div class="absolute w-[531px] h-[1288px] top-[1292px] left-[160px] bg-black"></div>
-        <div class="absolute w-[1665px] h-[765px] top-[1814px] left-[160px] bg-black"></div>
-
-        <h1
-            class="absolute w-[1140px] top-[275px] left-[320px] font-bellefair font-normal text-white text-[65px] text-center tracking-[0] leading-[normal]">
-            PRESERVING HISTORY TO CREATE THE FUTURE
-        </h1>
-
-        <h2
-            class="absolute w-[450px] top-[1330px] left-[270px] font-bellefair font-normal text-white text-[87px] tracking-[0] leading-[normal]">
-            A PLACE TO PRESERVE CULTURAL BEAUTY
-        </h2>
-        <p
-            class="absolute w-[810px] top-[2114px] left-[735px] font-poppins font-light text-white text-2xl tracking-[0] leading-[39.2px]">
-            The Vietnam Antique Jewelry Museum is a space to display jewelry masterpieces bearing the mark of national history and culture. Here, you will discover exquisite collections from ancient dynasties, testament to the delicate craftsmanship and precious traditional values. Not only is it a place to preserve heritage, the museum also offers the opportunity to experience, shop and learn more about the timeless beauty of ancient Vietnamese jewelry.
-        </p>
-        
-
-        
-
-        <hr class="absolute w-px h-[814px] top-[1268px] left-[767px] bg-white">
-        <hr class="absolute w-[814px] h-px top-[1873px] left-[300px] bg-white">
-        <hr class="absolute w-[941px] h-px top-[1345px] left-[707px] bg-white">
-        <hr class="absolute w-px h-[941px] top-[1141px] left-[1487px] bg-white">
-
-        <img class="w-[735px] h-[875px] absolute top-[1188px] left-[731px] object-cover" alt="Featured statue"
-            src="{{ asset('storage/images/hienvatxoanen.png') }}">
-    </section> 
+    <!-- Control Buttons (Optional Video Controls) -->
+    <div class="absolute bottom-4 right-4 flex space-x-2 z-30">
+        <button class="w-10 h-10 bg-black/70 text-white rounded-full flex items-center justify-center hover:bg-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.665z" />
+            </svg>
+        </button>
+        <button class="w-10 h-10 bg-black/70 text-white rounded-full flex items-center justify-center hover:bg-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+        </button>
+        <button class="w-10 h-10 bg-black/70 text-white rounded-full flex items-center justify-center hover:bg-gray-800">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+        </button>
+    </div>
+</section> 
     <!-- Upcoming Events Section -->
     <section class="mt-20">
         <div class="flex justify-between relative">
@@ -338,5 +328,33 @@
 }
 
 
+
+/* Fade-in Animation */
+@keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+        animation: fadeIn 1s ease-out forwards;
+    }
+
+    /* Ensure visibility */
+    section {
+        position: relative !important;
+        visibility: visible !important;
+        opacity: 1 !important;
+    }
+
+    /* Responsive Adjustments */
+    @media (max-width: 640px) {
+        .animate-fade-in {
+            animation-delay: 0.2s;
+        }
+        .bg-gradient-to-r {
+            background-image: linear-gradient(to right, #4a2c2a/70, transparent, #4a2c2a/70);
+        }
+        h1 { text-2xl sm:text-4xl }
+        p { text-sm sm:text-base }
+    }
 
 </style>

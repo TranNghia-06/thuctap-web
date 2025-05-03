@@ -36,6 +36,11 @@
                 viewBox="0 0 24 24">
                 <path d="M21 19V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2ZM5 5h14v5l-3-3.5-4 5-3-3.5L5 14V5Zm0 14v-1l4.5-6L13 17H5Z" />
             </svg>',
+        'shop' => '<svg class="shrink-0 w-5 h-5 transition duration-75"
+                aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
+                viewBox="0 0 24 24">
+                <path d="M20 4h-3V2h-2v2H9V2H7v2H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2zM4 6h16v12H4V6z" />
+            </svg>',
         'system_settings' => '<svg class="shrink-0 w-5 h-5 transition duration-75"
                 fill="none" stroke="currentColor" stroke-width="1.5"
                 viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">

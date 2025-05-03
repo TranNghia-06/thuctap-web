@@ -32,14 +32,14 @@
                                 @endphp
 
                                 <div class="flex items-center gap-6">
-                                    <a href="{{ route('client.collection.details', $productItem->collection->id) }}"
+                                    <a href="{{ route('client.shop.details', $productItem->collection->id) }}"
                                         class="h-14 w-14 shrink-0">
                                         <img class="h-full w-full dark:hidden"
                                             src="{{ asset('storage/' . $productItem->collection->thumbnail) }}"
                                             alt="{{ $productItem->collection->name }}" />
                                     </a>
 
-                                    <a href="{{ route('client.collection.details', $productItem->collection->id) }}"
+                                    <a href="{{ route('client.shop.details', $productItem->collection->id) }}"
                                         class="min-w-0 flex-1 font-medium text-gray-900 hover:underline dark:text-white">
                                         {{ $productItem->collection->name }}
                                     </a>

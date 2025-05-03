@@ -1,13 +1,13 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    {{ __('Cập nhật ảnh') }}
+    {{ __('Update Photo') }}
 @endsection
 
 @section('content')
-    <x-ui.breadcrumb :breadcrumbs="[
-        ['url' => 'admin.photo', 'label' => 'Quản lý ảnh'],
-        ['url' => 'admin.photo.edit', 'label' => 'Cập nhật ảnh'],
+    <x-ui.breadcrumb :breadcrumbs="[ 
+        ['url' => 'admin.photo', 'label' => 'Manage Photos'],
+        ['url' => 'admin.photo.edit', 'label' => 'Update Photo'],
     ]" />
 
     <form class="space-y-4 md:space-y-6 mt-8" action="{{ route('admin.photo.update', $image->id) }}" method="POST" enctype="multipart/form-data">
@@ -22,14 +22,14 @@
 
         <div>
             <label for="image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                {{ __('Ảnh hiện tại') }}
+                {{ __('Current Photo') }}
             </label>
             <img src="{{ asset('storage/' . $image->url) }}" class="w-16 h-16 rounded-md mb-4" alt="Current Image">
         </div>
 
         <div>
             <label for="new_image" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                {{ __('Tải ảnh mới (nếu muốn thay đổi)') }}
+                {{ __('Upload New Photo (If you want to change)') }}
             </label>
             <input type="file" name="new_image" id="new_image" accept="image/*" class="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400">
             @error('new_image')
@@ -38,7 +38,7 @@
         </div>
 
         <x-ui.button type="submit" class="w-full md:w-auto">
-            {{ __('Lưu thay đổi') }}
+            {{ __('Save Changes') }}
         </x-ui.button>
     </form>
 @endsection

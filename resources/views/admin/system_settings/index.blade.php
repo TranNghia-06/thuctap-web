@@ -1,12 +1,12 @@
 @extends('layouts.dashboard')
 
 @section('title')
-    {{ __('Quản lý cấu hình') }}
+    {{ __('System Settings Management') }}
 @endsection
 
 @section('content')
 <div class="max-w-4xl mx-auto py-8">
-    <h2 class="text-3xl font-semibold mb-6 text-gray-900">Cấu hình hệ thống</h2>
+    <h2 class="text-3xl font-semibold mb-6 text-gray-900">System Settings</h2>
 
     @if(session('success'))
         <div class="bg-green-100 text-green-800 p-4 rounded-lg mb-6 flex items-center">
@@ -23,12 +23,12 @@
             <button @click="tab = 'contact'" 
                 :class="tab === 'contact' ? 'border-b-4 border-indigo-600 text-indigo-600' : 'text-gray-600'"
                 class="px-4 py-2 font-medium text-lg focus:outline-none">
-                Thông tin liên hệ
+                Contact Information
             </button>
             <button @click="tab = 'social'" 
                 :class="tab === 'social' ? 'border-b-4 border-indigo-600 text-indigo-600' : 'text-gray-600'"
                 class="px-4 py-2 font-medium text-lg focus:outline-none">
-                Mạng xã hội
+                Social Media
             </button>
             <button @click="tab = 'logo'" 
                 :class="tab === 'logo' ? 'border-b-4 border-indigo-600 text-indigo-600' : 'text-gray-600'"
@@ -40,31 +40,31 @@
         <form action="{{ route('admin.system_settings.update') }}" method="POST" enctype="multipart/form-data" class="space-y-8">
             @csrf
 
-            <!-- Tab 1: Thông tin liên hệ -->
+            <!-- Tab 1: Contact Information -->
             <div x-show="tab === 'contact'" class="space-y-6">
                 <div class="space-y-4">
-                    <label for="contact_email" class="block text-sm font-medium text-gray-700">Email liên hệ</label>
+                    <label for="contact_email" class="block text-sm font-medium text-gray-700">Contact Email</label>
                     <input type="email" name="contact_email" id="contact_email"
                         class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2"
                         value="{{ $configurations['contact_email']->value ?? '' }}">
                 </div>
 
                 <div class="space-y-4">
-                    <label for="contact_phone" class="block text-sm font-medium text-gray-700">Số điện thoại</label>
+                    <label for="contact_phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
                     <input type="text" name="contact_phone" id="contact_phone"
                         class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2"
                         value="{{ $configurations['contact_phone']->value ?? '' }}">
                 </div>
 
                 <div class="space-y-4">
-                    <label for="address" class="block text-sm font-medium text-gray-700">Địa chỉ</label>
+                    <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
                     <input type="text" name="address" id="address"
                         class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2"
                         value="{{ $configurations['address']->value ?? '' }}">
                 </div>
             </div>
 
-            <!-- Tab 2: Social -->
+            <!-- Tab 2: Social Media -->
             <div x-show="tab === 'social'" class="space-y-6">
                 @php
                     $fb = $configurations['facebook']->value ?? '';
@@ -103,50 +103,38 @@
             </div>
 
             <!-- Tab 3: Logo -->
-<div x-show="tab === 'logo'" class="space-y-6">
-    <div class="space-y-4">
-        <label for="site_name" class="block text-sm font-medium text-gray-700">Tên Website</label>
-        <input type="text" name="site_name" id="site_name"
-            class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2"
-            value="{{ $configurations['site_name']->value ?? '' }}">
-    </div>
+            <div x-show="tab === 'logo'" class="space-y-6">
+                <div class="space-y-4">
+                    <label for="site_name" class="block text-sm font-medium text-gray-700">Website Name</label>
+                    <input type="text" name="site_name" id="site_name"
+                        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2"
+                        value="{{ $configurations['site_name']->value ?? '' }}">
+                </div>
 
-    <div class="space-y-4">
-        <label for="footer_text" class="block text-sm font-medium text-gray-700">Mô tả footer</label>
-        <textarea name="footer_text" id="footer_text" rows="3"
-            class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2">{{ $configurations['footer_text']->value ?? '' }}</textarea>
-    </div>
+                <div class="space-y-4">
+                    <label for="footer_text" class="block text-sm font-medium text-gray-700">Footer Description</label>
+                    <textarea name="footer_text" id="footer_text" rows="3"
+                        class="w-full border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 px-4 py-2">{{ $configurations['footer_text']->value ?? '' }}</textarea>
+                </div>
 
-    <div class="space-y-4">
-        <label for="logo" class="block text-sm font-medium text-gray-700">Logo Website</label>
-        <input type="file" name="logo" id="logo"
-            class="block w-full text-sm text-gray-700 mt-2">
-        @if (!empty($configurations['logo']->value))
-            <div class="mt-4">
-                <img src="{{ asset('storage/' . $configurations['logo']->value) }}" alt="Logo hiện tại" class="h-16">
+                <!-- Add favicon section here -->
+                <div class="space-y-4">
+                    <label for="favicon" class="block text-sm font-medium text-gray-700">Favicon</label>
+                    <input type="file" name="favicon" id="favicon"
+                        class="block w-full text-sm text-gray-700 mt-2" accept=".ico,.png,.jpg,.jpeg,.svg">
+                    @if (!empty($configurations['favicon']->value))
+                        <div class="mt-4">
+                            <img src="{{ asset('storage/' . $configurations['favicon']->value) }}" alt="Current Favicon" class="h-8 w-8">
+                        </div>
+                    @endif
+                </div>
             </div>
-        @endif
-    </div>
 
-    <!-- ✅ Thêm phần favicon vào đây -->
-    <div class="space-y-4">
-        <label for="favicon" class="block text-sm font-medium text-gray-700">Favicon</label>
-        <input type="file" name="favicon" id="favicon"
-            class="block w-full text-sm text-gray-700 mt-2" accept=".ico,.png,.jpg,.jpeg,.svg">
-        @if (!empty($configurations['favicon']->value))
-            <div class="mt-4">
-                <img src="{{ asset('storage/' . $configurations['favicon']->value) }}" alt="Favicon hiện tại" class="h-8 w-8">
-            </div>
-        @endif
-    </div>
-</div>
-
-
-            <!-- Nút lưu -->
+            <!-- Save Button -->
             <div class="pt-6">
                 <button type="submit"
                     class="bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-6 rounded-lg shadow-md transition-colors duration-300">
-                    Lưu cấu hình
+                    Save Settings
                 </button>
             </div>
         </form>

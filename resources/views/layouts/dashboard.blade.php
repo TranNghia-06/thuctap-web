@@ -97,45 +97,51 @@
     {{-- Sidebar --}}
     <x-layout.sidebar :items="[
         [
-            'route' => 'admin.post',
-            'name' => 'Quản lý bài viết',
-            'icon' => 'post',
-        ],
-        [
-            'route' => 'admin.exhibition',
-            'name' => 'Buổi triển lãm',
-            'icon' => 'exhibition',
-        ],
-        [
-            'route' => 'admin.ticket',
-            'name' => 'Quản lý vé',
-            'icon' => 'ticket',
-        ],
-        [
-            'route' => 'admin.order',
-            'name' => 'Đơn hàng',
-            'icon' => 'order',
-        ],
-        [
-            'route' => 'admin.user',
-            'name' => 'Người dùng',
-            'icon' => 'user',
-        ],
-        [
-            'route' => 'admin.collection',
-            'name' => 'Bộ sưu tập',
-            'icon' => 'collection',
-        ],
-        [
-            'route' => 'admin.photo',
-            'name' => 'Thư viện ảnh',
-            'icon' => 'photo',
-        ],
-        [
-            'route' => 'admin.system_settings',
-            'name' => 'Cấu hình hệ thống',
-            'icon' => 'system_settings',
-        ],
+    'route' => 'admin.post',
+    'name' => 'Manage Posts',
+    'icon' => 'post',
+],
+[
+    'route' => 'admin.exhibition',
+    'name' => 'Exhibitions',
+    'icon' => 'exhibition',
+],
+[
+    'route' => 'admin.ticket',
+    'name' => 'Manage Tickets',
+    'icon' => 'ticket',
+],
+[
+    'route' => 'admin.shop',
+    'name' => 'Manage Products',
+    'icon' => 'shop',
+],
+[
+    'route' => 'admin.order',
+    'name' => 'Orders',
+    'icon' => 'order',
+],
+[
+    'route' => 'admin.user',
+    'name' => 'Users',
+    'icon' => 'user',
+],
+[
+    'route' => 'admin.collection',
+    'name' => 'Collections',
+    'icon' => 'collection',
+],
+[
+    'route' => 'admin.photo',
+    'name' => 'Photo Library',
+    'icon' => 'photo',
+],
+[
+    'route' => 'admin.system_settings',
+    'name' => 'System Settings',
+    'icon' => 'system_settings',
+],
+
     ]" />
 
     {{-- Main content --}}
