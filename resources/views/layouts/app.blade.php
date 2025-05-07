@@ -98,7 +98,7 @@
                     <li><a href="{{ route('client.exhibition') }}" class="hover:underline uppercase text-sm sm:text-base">Exhibitions & Events</a></li>
                     <li><a href="{{ route('client.shop') }}" class="hover:underline uppercase text-sm sm:text-base">Shop</a></li>
                     <li><a href="{{ route('client.collection') }}" class="hover:underline uppercase text-sm sm:text-base">Collection</a></li>
-                    <li><a href="{{ route('client.post') }}" class="hover:underline uppercase text-sm sm:text-base">Post</a></li>
+                    <li><a href="{{ route('client.post') }}" class="hover:underline uppercase text-sm sm:text-base">Blog</a></li>
                 </ul>
                 <!-- Menu bên phải -->
                 <div class="flex flex-col sm:flex-row items-center gap-4 mt-4 sm:mt-0">
@@ -120,14 +120,18 @@
     <ul>
         <li><a href="{{ route('client.exhibition.ticket.history') }}" class="block px-4 py-2 text-sm hover:bg-gray-100">Booking History</a></li>
         <li><a href="{{ route('client.post.history') }}" class="block px-4 py-2 text-sm hover:bg-gray-100">Post View History</a></li>
+        <li><a href="{{ route('client.museum_ticket.history') }}" class="block px-4 py-2 text-sm hover:bg-gray-100">Museum ticket booking history</a></li>
         <li><a href="{{ route('client.user.setting') }}" class="block px-4 py-2 text-sm hover:bg-gray-100">Account Settings</a></li>
         @if (Auth::user()->is_admin)
             <li><a href="{{ route('admin.post') }}" class="block px-4 py-2 text-sm hover:bg-gray-100">Admin Dashboard</a></li>
         @endif
         <li>
             <button data-modal-target="popup-modal-logout" data-modal-toggle="popup-modal-logout"
-                    class="w-full text-left px-4 py-2 text-sm hover:bg-gray-100">Logout</button>
+                    class="w-full text-left px-4 py-2 text-sm text-red-600 hover:bg-red-100">
+                Logout
+            </button>
         </li>
+
     </ul>
 </div>
 

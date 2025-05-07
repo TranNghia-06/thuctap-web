@@ -70,14 +70,15 @@
                                 </div>
 
                                 <ul class="py-1" role="none">
-                                    <li>
-                                        <button role="menuitem" data-modal-target="popup-modal-logout"
+                                <li>
+                                    <button role="menuitem" data-modal-target="popup-modal-logout"
                                             data-modal-toggle="popup-modal-logout"
-                                            class="block text-left w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
+                                            class="block text-left w-full px-4 py-2 text-sm text-red-600 hover:bg-red-100 dark:text-red-500 dark:hover:bg-red-700 dark:hover:text-white"
                                             type="button">
-                                            {{ __('Đăng xuất') }}
-                                        </button>
-                                    </li>
+                                        {{ __('Logout') }}
+                                    </button>
+                                </li>
+
                                     <li>
                                         <a href="{{ route('home') }}" role="menuitem"
                                             class="block w-full px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:text-gray-300 dark:hover:bg-gray-600 dark:hover:text-white"
@@ -102,13 +103,18 @@
     'icon' => 'post',
 ],
 [
+    'route' => 'admin.ticketmuseum',
+    'name' => 'Museum ticket',
+    'icon' => 'tickets',
+],
+[
     'route' => 'admin.exhibition',
     'name' => 'Exhibitions',
     'icon' => 'exhibition',
 ],
 [
     'route' => 'admin.ticket',
-    'name' => 'Manage Tickets',
+    'name' => 'Exhibition ticket',
     'icon' => 'ticket',
 ],
 [
@@ -172,18 +178,17 @@
                             d="M10 11V6m0 8h.01M19 10a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
                     </svg>
                     <h3 class="mb-5 text-lg font-normal text-gray-500 dark:text-gray-400">
-                        Bạn có chắc muốn đăng xuất không?</h3>
+                    Are you sure you want to log out?</h3>
                     <button data-modal-hide="popup-modal-logout"
                         onclick="event.preventDefault();
                                          document.getElementById('logout-form').submit();"
                         type="button"
                         class="text-white bg-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300 dark:focus:ring-red-800 font-medium rounded-lg text-sm inline-flex items-center px-5 py-2.5 text-center">
-                        Đồng ý
+                        Yes
                     </button>
 
                     <button data-modal-hide="popup-modal-logout" type="button"
-                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">Huỷ
-                        bỏ</button>
+                        class="py-2.5 px-5 ms-3 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 focus:z-10 focus:ring-4 focus:ring-gray-100 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">No</button>
 
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                         @csrf

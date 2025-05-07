@@ -10,8 +10,8 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\SystemSettingController;
 use App\Http\Controllers\ImageController;
 use App\Http\Middleware\IsAdmin;
-use App\Http\Controllers\MuseumTicketController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\AdminTicketController;
 
 use Illuminate\Support\Facades\Route; 
 use Illuminate\Support\Facades\Auth; // Hỗ trợ xác thực đăng nhập/đăng xuất
@@ -24,6 +24,7 @@ use App\Http\Controllers\Client\CartController as ClientCartController;
 use App\Http\Controllers\Client\OrderController as ClientOrderController;
 use App\Http\Controllers\Client\UserController as ClientUserController;
 use App\Http\Controllers\Client\ShopController as ClientShopController;
+use App\Http\Controllers\Client\MuseumTicketController;
 
 // Xác thực người dùng
 Auth::routes();
@@ -35,6 +36,16 @@ Route::prefix('collection')->group(function () {
   Route::get('/', [ClientCollectionController::class, 'index'])->name('client.collection');
   Route::get('/{id}', [ClientCollectionController::class, 'details'])->name('client.collection.details');
 });
+
+
+//dat ve tham quan bao tàng
+
+Route::middleware('auth')->prefix('museum-ticket')->group(function () {
+  Route::get('/', [MuseumTicketController::class, 'create'])->name('client.museum_ticket.create');
+  Route::post('/', [MuseumTicketController::class, 'store'])->name('client.museum_ticket.store');
+  Route::get('/history', [MuseumTicketController::class, 'history'])->name('client.museum_ticket.history');
+});
+
 
 
 // Nhóm route dành cho Bộ sưu tập (SHOP) của khách hàng
@@ -113,6 +124,17 @@ Route::middleware(['auth', IsAdmin::class])->prefix('admin')->group(function () 
     Route::get('/restore/{id}', [PostController::class, 'showRestore'])->name('admin.post.restore');
     Route::post('/restore/{id}', [PostController::class, 'restore'])->name('admin.post.restore');
   });
+
+
+//  Nhóm route quản lý vé (Ticket)
+Route::prefix('ticketmuseum')->group(function () {
+  Route::get('/', [AdminTicketController::class, 'index'])->name('admin.ticketmuseum');
+
+  Route::get('/{id}/accept', [AdminTicketController::class, 'accept'])->name('admin.ticketmuseum.accept');
+  Route::get('/{id}/reject', [AdminTicketController::class, 'reject'])->name('admin.ticketmuseum.reject');
+  Route::get('/{id}/paid', [AdminTicketController::class, 'markAsPaid'])->name('admin.ticketmuseum.markAsPaid');
+});
+
 
 
 

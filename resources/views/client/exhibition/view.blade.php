@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    {{ __('Danh sách buổi triển lãm') }}
+    {{ __('List of exhibitions') }}
 @endsection
 
 @section('content')

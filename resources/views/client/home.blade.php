@@ -26,7 +26,11 @@
             <p class="font-poppins font-light text-[#4a2c2a] text-base sm:text-lg tracking-wide leading-relaxed max-w-[90%] sm:max-w-[500px] mx-auto">
                 Discover the timeless beauty of ancient Vietnamese jewelry, where history and artistry intertwine in every precious piece.
             </p>
-            
+            <a href="{{ route('client.museum_ticket.create') }}"
+   class="inline-block bg-black hover:bg-gray-600 text-white font-semibold px-6 py-3 rounded-lg shadow-lg transform hover:scale-105 transition duration-300 ease-in-out">
+    Book your visit &gt;
+</a>
+
         </div>
     </div>
 
@@ -49,6 +53,47 @@
         </button>
     </div>
 </section> 
+
+<!-- Jewelry Museum Hero Section -->
+<section class="bg-black text-white py-16 px-8 md:px-20 border-b border-gray-700">
+    <div class="max-w-screen-xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+        <!-- Left: Title -->
+        <div class="text-center md:text-left max-w-2xl">
+            <h2 class="text-4xl md:text-5xl font-semibold leading-tight mb-6">
+                Discover the Timeless Beauty <br class="hidden md:block" />
+                of Vietnamese Heritage Jewelry
+            </h2>
+        </div>
+
+        <!-- Right: Info List -->
+        <div class="flex flex-col space-y-6 md:space-y-4 text-base md:text-lg font-poppins">
+        <div class="flex items-center gap-3 group cursor-pointer hover:text-yellow-400 transition duration-300">
+                <a href="{{ route('client.museum_ticket.create') }}" class="bg-white text-black font-semibold py-3 px-6 rounded-lg shadow-lg border-2 border-transparent group-hover:border-yellow-500 transition-all duration-300 hover:bg-yellow-500 hover:text-black focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 inline-block mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6h13V7H9V1H7v6H1v4h6v6h2zm2-6h8v2h-8v-2z"/>
+                    </svg>
+                    Book Tickets Online
+                </a>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span><strong>Open Today:</strong> 07:00 AM – 05:30 PM</span>
+            </div>
+
+            <div class="flex items-center gap-3">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                </svg>
+                <span><strong>Last Entry:</strong> 05:30 PM</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+
     <!-- Upcoming Events Section -->
     <section class="mt-20">
         <div class="flex justify-between relative">
@@ -128,47 +173,7 @@
             </div>
         </div>
     </section>
- <!-- Jewelry Museum Hero Section -->
-<div class="bg-black text-white py-16 px-8 md:px-20 border-b border-gray-700">
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
-        <!-- Left: Title -->
-        <div class="max-w-2xl">
-            <h2 class="text-3xl md:text-5xl font-semibold leading-tight">
-                Discover the timeless beauty <br class="hidden md:block" />
-                of Vietnamese heritage jewelry
-            </h2>
-        </div>
-
-        <!-- Right: Info list -->
-<div class="space-y-4 text-base md:text-lg font-poppins md:-ml-10">
-    <div class="flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
-            viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M9 17v-6h13V7H9V1H7v6H1v4h6v6h2zm2-6h8v2h-8v-2z" />
-        </svg>
-        <span>Free entry</span>
-    </div>
-    <div class="flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
-            viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <span><strong>Open today:</strong> 07.00–19.00</span>
-    </div>
-    <div class="flex items-center gap-2">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-white" fill="none"
-            viewBox="0 0 24 24" stroke="currentColor">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <span><strong>Last entry:</strong> 17.30</span>
-    </div>
-</div>
-
-    </div>
-</div>
+ 
 
 
 
@@ -293,7 +298,7 @@
 </div>
 
 
-        <div class="text-center mt-20">
+        <div class="text-center mt-20 mb-16">
         <a href="{{ route('client.collection') }}">
             <button class="relative w-[290px] h-[95px] p-0 cursor-pointer transform hover:scale-105 transition duration-300 ease-in-out">
                 <div class="z-0 absolute w-[95px] h-[95px] top-0 left-10 bg-[#363636] rounded-[47.58px]"></div>
@@ -304,6 +309,52 @@
         </a>
         </div>
     </section>
+
+<!-- Our Shop Section - Inspired by British Museum -->
+<section class="px-4 md:px-20">
+    <div class="max-w-7xl mx-auto">
+        <!-- Header with white background -->
+        <div class="text-center mb-16 bg-white py-16 px-4">
+            <h2 class="font-bellefair text-4xl md:text-5xl text-black mb-6">
+                Welcome to the Vietnam Antique Jewelry Museum Shop
+            </h2>
+            <a href="{{ route('client.shop') }}" class="inline-block border-2 border-black text-black font-medium px-8 py-3 hover:bg-black hover:text-white transition duration-300">
+                Shop now >>
+            </a>
+        </div>
+
+        <!-- Product grid with black background -->
+        <div class="bg-black py-20 px-4 rounded-lg">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+
+                <!-- Grid item -->
+                @php
+                    $items = [
+                        ['title' => 'Inspired by the Museum', 'image' => 'vong_co_ly.jpg'],
+                        ['title' => 'Tiger silver Ring', 'image' => 'nhanbac.jpg'],
+                        ['title' => 'Turtle pendant', 'image' => 'meday.jpg'],
+                        ['title' => 'Amethyst Necklace', 'image' => 'daychuyen.jpg'],
+                    ];
+                @endphp
+
+                @foreach ($items as $item)
+                    <div class="group transform transition duration-500 hover:scale-105 bg-black p-6 rounded-lg text-center">
+                        <img src="{{ asset('storage/images/' . $item['image']) }}"
+                             alt="{{ $item['title'] }}"
+                             class="w-72 h-72 object-cover mx-auto rounded-lg shadow-md mb-4">
+                        <h3 class="font-bellefair text-xl text-white transition-colors duration-300 group-hover:text-yellow-400">
+                            {{ $item['title'] }}
+                        </h3>
+                    </div>
+                @endforeach
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
 @endsection
 
 
